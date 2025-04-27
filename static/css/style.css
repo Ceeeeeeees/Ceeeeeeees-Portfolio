@@ -1,0 +1,540 @@
+/* Estilos globales */
+:root {
+  --main-bg-color: #0a0a0a;
+  --text-color: #e0e0e0;
+  --accent-color: #00ff8c;
+  --secondary-accent: #ff00ff;
+  --dark-accent: #121212;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-sans: 'Quicksand', sans-serif;
+  --font-special: 'Rubik Dirt', cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Efecto de líneas de código en el fondo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.97), rgba(0, 0, 0, 0.97)),
+              url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='0' y='5' fill='%23111111' font-family='monospace'%3E01%3C/text%3E%3C/svg%3E");
+  z-index: -1;
+}
+
+/* Barra de navegación */
+.navbar {
+  padding: 1rem 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.navbar-brand {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  position: relative;
+}
+
+.navbar-brand::after {
+  content: ">";
+  position: absolute;
+  right: -15px;
+  animation: blink 1s infinite;
+  color: var(--accent-color);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.nav-link {
+  color: var(--text-color) !important;
+  margin: 0 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  font-family: var(--font-mono);
+}
+
+.nav-link:hover {
+  color: var(--accent-color) !important;
+  transform: translateY(-2px);
+}
+
+.nav-link::before {
+  content: "[";
+  opacity: 0;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: "]";
+  opacity: 0;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::before,
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+/* Secciones principales */
+section {
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+section::before {
+  content: "<section>";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: rgba(0, 255, 140, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+section::after {
+  content: "</section>";
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: rgba(0, 255, 140, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* Sección Sobre Mi */
+#SobreMi {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #121212 0%, #080808 100%);
+}
+
+#SobreMi h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  text-shadow: 0 0 10px rgba(0, 255, 140, 0.7);
+  animation: glitch 5s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 0 0 10px rgba(0, 255, 140, 0.7); }
+  2% { text-shadow: 3px 0 10px rgba(255, 0, 255, 0.7); }
+  4% { text-shadow: -3px 0 10px rgba(0, 255, 255, 0.7); }
+  6% { text-shadow: 0 0 10px rgba(0, 255, 140, 0.7); }
+  98% { text-shadow: 0 0 10px rgba(0, 255, 140, 0.7); }
+  99% { text-shadow: -3px 0 10px rgba(255, 0, 255, 0.7); }
+  100% { text-shadow: 0 0 10px rgba(0, 255, 140, 0.7); }
+}
+
+#SobreMi p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: var(--font-sans);
+}
+
+/* Sección Educación */
+#Educacion {
+  background-color: #0c0c0c;
+}
+
+.education-item {
+  border-left: 2px solid var(--accent-color);
+  padding-left: 20px;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.education-item::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  left: -8.5px;
+  top: 0;
+}
+
+.education-item h3 {
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+}
+
+.education-item .year {
+  color: var(--secondary-accent);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+/* Sección Proyectos */
+#Proyectos {
+  background-color: #090909;
+}
+
+#Proyectos h2 {
+  text-align: center;
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  margin-bottom: 3rem;
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: rgba(18, 18, 18, 0.8);
+  border: 1px solid var(--dark-accent);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 255, 140, 0.2);
+  border-color: var(--accent-color);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--dark-accent);
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-content h3 {
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+  margin-bottom: 1rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.project-tag {
+  background-color: rgba(0, 255, 140, 0.1);
+  color: var(--accent-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent-color);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  transition: all 0.3s ease;
+  background-color: rgba(0, 255, 140, 0.05);
+}
+
+.github-link i {
+  margin-right: 8px;
+}
+
+.github-link:hover {
+  background-color: var(--accent-color);
+  color: var(--main-bg-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 255, 140, 0.3);
+}
+
+/* Sección de Contacto */
+#Contacto {
+  background-color: #080808;
+  text-align: center;
+}
+
+#Contacto h2 {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-control {
+  width: 100%;
+  background-color: rgba(18, 18, 18, 0.8);
+  border: 1px solid var(--dark-accent);
+  color: var(--text-color);
+  padding: 0.8rem;
+  font-family: var(--font-mono);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(0, 255, 140, 0.2);
+}
+
+.btn-submit {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.8rem 2rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-submit::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 140, 0.3), transparent);
+  animation: btn-shine 3s infinite;
+}
+
+@keyframes btn-shine {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.btn-submit:hover {
+  background-color: rgba(0, 255, 140, 0.1);
+}
+
+.social-links {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.social-link {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--accent-color);
+  transform: translateY(-5px);
+}
+
+/* Intereses - Música y Arte */
+#Intereses {
+  background-color: #0a0a0a;
+}
+
+#Intereses h2 {
+  text-align: center;
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+}
+
+.interests-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.interest-card {
+  background-color: rgba(18, 18, 18, 0.8);
+  border: 1px solid var(--dark-accent);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding: 1.5rem;
+}
+
+.interest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 255, 140, 0.2);
+  border-color: var(--accent-color);
+}
+
+.interest-card h3 {
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+  margin-bottom: 1rem;
+}
+
+.artist-list {
+  list-style: none;
+}
+
+.artist-list li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 20px;
+}
+
+.artist-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.art-item {
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  height: 120px;
+}
+
+.art-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.art-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+  background-color: #050505;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--dark-accent);
+}
+
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Terminal Typing Effect */
+.terminal-text {
+  border-right: 2px solid var(--accent-color);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 4s steps(50) infinite, blink-caret 0.75s step-end infinite;
+  display: inline-block;
+  max-width: 100%;
+}
+
+@keyframes typing {
+  0%, 100% { width: 0 }
+  50% { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--accent-color) }
+}
+
+/* Media Queries para Responsive */
+@media (max-width: 768px) {
+  section {
+    padding: 3rem 1rem;
+  }
+  
+  #SobreMi h1 {
+    font-size: 2.5rem;
+  }
+  
+  .projects-container,
+  .interests-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .navbar-nav {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .nav-link {
+    margin: 0.5rem 0;
+  }
+  
+  .art-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+  
+  .art-item {
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  #SobreMi h1 {
+    font-size: 2rem;
+  }
+  
+  .education-item {
+    padding-left: 15px;
+  }
+  
+  .art-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .interest-card {
+    margin-bottom: 1.5rem;
+  }
+}

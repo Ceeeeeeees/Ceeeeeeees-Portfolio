@@ -12,7 +12,11 @@
 
     <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="./static/css/">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Mi CSS -->
+    <link rel="stylesheet" href="./static/css/style.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,32 +24,38 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Rubik+Dirt&family=Share+Tech+Mono&display=swap"
         rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-light">
+        <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container-fluid">
+                <a class="navbar-brand" href="/index.html">
+                    Ceeeeeeees
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
                     aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbar-toggler">
-                    <a class="navbar-brand" href="/index.html">
-                        <!--Aquí debe de ir la imagen-->
-                    </a>
-                    <ul class="navbar-nav d-flex justify-content-center align-items-center">
+                    <ul class="navbar-nav ms-auto d-flex justify-content-center align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link activate" aria-current="page" href="SobreMI">Sobre mi</a>
+                            <a class="nav-link" href="#SobreMi">Sobre mí</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link activate" aria-current="page" href="Educacion">Educacion</a>
+                            <a class="nav-link" href="#Educacion">Educación</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link activate" aria-current="page" href="Proyectos">Proyectos</a>
+                            <a class="nav-link" href="#Intereses">Intereses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link activate" aria-current="page" href="Contacto">Contacto</a>
+                            <a class="nav-link" href="#Proyectos">Proyectos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Contacto">Contacto</a>
                         </li>
                     </ul>
                 </div>
@@ -56,32 +66,242 @@
     <main>
         <section id="SobreMi">
             <h1>Hola, soy César :D</h1>
-            <p>Desarrollador, apasionado por la ciberseguridad y el aprendizaje automático.</p>
+            <p class="mt-3">
+                <span class="terminal-text">Desarrollador web con alma de artista.</span>
+            </p>
+            <p class="mt-4">
+                Apasionado por la ciberseguridad, el aprendizaje automático y el crecimiento personal.
+                Soy una persona curiosa, proactiva y que disfruta de los retos.
+            </p>
+            <div class="mt-5">
+                <a href="#Proyectos" class="btn-submit">Ver mis proyectos</a>
+            </div>
+        </section>
+
+        <section id="Educacion">
+            <div class="container">
+                <h2 class="text-center mb-5">Educación</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="education-item">
+                            <h3>Ingeniería en Sistemas Computacionales</h3>
+                            <p class="year">2020 - Presente</p>
+                            <p>
+                                Formación integral en el análisis y desarrollo de sistemas, algoritmos, bases de datos,
+                                redes de computadoras y
+                                cómputo en la nube.
+                                Especialización en ciberseguridad y aprendizaje automático.
+                            </p>
+                        </div>
+                        <div class="education-item">
+                            <h3>Técnico en Informática</h3>
+                            <p class="year">2017-2020</p>
+                            <p>
+                                Formación técnica en programación y mantenimiento de hardware y software.
+                            </p>
+                        </div>
+                        <div class="education-item">
+                            <h3>Google Cloud Foundations</h3>
+                            <p class="year">En curso</p>
+                            <p>
+                                Curso de Google Cloud que cubre los fundamentos de la computación en la nube, incluyendo
+                                servicios de almacenamiento, redes y seguridad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="Intereses">
+            <div class="container">
+                <h2>Intereses</h2>
+                <div class="interests-container">
+                    <div class="interest-card">
+                        <h3>Música</h3>
+                        <p>La música me inspira siempre me ha acompañado, sin embargo, durante el proceso de escribir
+                            código es el que me inspira y motiva. Estos son algunos de mis artistas
+                            favoritos y algunos de sus álbumes:</p>
+                        <ul class="artist-list">
+                            <li>Zoé - Memo Rex y Programaton</li>
+                            <li>Taylor Swift - Folklore y Midnights</li>
+                            <li>Frank Ocean - Blonde y Channel Orange</li>
+                            <li>Kanye West - Donda, Ye y My Beautiful Dark Twisted Fantasy</li>
+                        </ul>
+                    </div>
+                    <div class="interest-card">
+                        <h3>Películas</h3>
+                        <p>Las forma en que directores pueden representar una historia a través del cine, utilizando
+                            diversos elementos como la música y la fotografía han hecho que me enamore del cine.
+                            Integrar todos estos elementos para transmitirnos emociones, construir atmósferas y contar
+                            historias complejas es algo que me fascina.</p>
+                        <p>Algunas de mis películas favoritas son:</p>
+                        <ul class="book-list">
+                            <li>Memento - Christopher Nolan</li>
+                            <li>Before sunrise - Richard Linklater</li>
+                            <li>Ex-machina - Alex Garland</li>
+                            <li>Se7en - David Fincher</li>
+                        </ul>
+                    </div>
+                    <div class="interest-card">
+                        <h3>Arte</h3>
+                        <p>El impresionismo captura la esencia de un momento a través de la luz y el color, valores que
+                            intento replicar en mis proyectos.</p>
+                        <div class="art-grid">
+                            <div class="art-item">
+                                <img src="./static/img/flowersImpre.jpg" alt="Arte impresionista" class="img-fluid">
+                            </div>
+                            <div class="art-item">
+                                <img src="./static/img/impre.jpg" alt="Arte impresionista" class="img-fluid">
+                            </div>
+                            <div class="art-item">
+                                <img src="./static/img/impre2.jpg" alt="Arte impresionista" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interest-card">
+                        <h3>Leer</h3>
+                        <p>La lectura me transporta a otros mundos y me permite explorar nuevas ideas y perspectivas.
+                        </p>
+                        <p>Pienso que enriquece mi espiritu y motiva mis acciones.</p>
+                        <ul class="book-list">
+                            <li>Donde habitan los ángeles - Claudia Celis</li>
+                            <li>Al sur de la frontera, al oeste del sol - Haruki Murakami</li>
+                            <li>Sputnik, mi amor - Haruki Murakami</li>
+                            <li>El extranjero - Albert Camus</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="Proyectos">
-            <h2>Proyectos</h2>
-            <div class="proyecto_1">
-                <h3>Proyecto 1</h3>
-                <p>Descripción breve del proyecto.</p>
-            </div>
-            <div class="proyecto_2">
-                <h3>Proyecto 2</h3>
-                <p>Descripción breve del proyecto.</p>
+            <div class="container">
+                <h2>Proyectos</h2>
+                <div class="projects-container">
+                    <div class="project-card">
+                        <img src="#" alt="Proyecto 1">
+                        <div class="project-content">
+                            <h3>Intérprete</h3>
+                            <p>Desarrollo de un intérprete para la materia de compiladores, donde en compañía un
+                                compañero trabajamos con las fases de análisis léxico, sintáctico y semántico.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Java</span>
+                                <span class="project-tag">Expresiones regulares</span>
+                                <span class="project-tag">Depuración</span>
+                            </div>
+                            <div class="project-links mt-3">
+                                <a href="https://github.com/Ceeeeeeees/Compiladores" class="github-link"
+                                    target="_blank">
+                                    <i class="fab fa-github"></i> Ver código
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="#" alt="Proyecto 2">
+                        <div class="project-content">
+                            <h3>Laberintos y agentes inteligentes</h3>
+                            <p>Desarrollo e implementación de algoritmos como A* para la resolución de laberintos y la
+                                optimización de rutas.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">pyGame</span>
+                                <span class="project-tag">Inteligencia Artificial</span>
+                            </div>
+                            <div class="project-links mt-3">
+                                <a href="https://github.com/Ceeeeeeees/Inteligencia_Artificial/tree/main/Primer%20Parcial/Proyecto"
+                                    class="github-link" target="_blank">
+                                    <i class="fab fa-github"></i> Ver código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="#" alt="Proyecto 3">
+                        <div class="project-content">
+                            <h3>Clasificación de tweets</h3>
+                            <p>Desarrollo de un modelo para la clasificación de tweets según el sentimiento, utilizando
+                                técnicas de aprendizaje automático y procesamiento de lenguaje natural.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Stanza</span>
+                                <span class="project-tag">Scikit-learn</span>
+                                <span class="project-tag">NLTK</span>
+                            </div>
+                            <div class="project-links mt-3">
+                                <a href="https://github.com/Ceeeeeeees/Machine-Learning/tree/main/Practica-clasificadores"
+                                    class="github-link" target="_blank">
+                                    <i class="fab fa-github"></i> Ver código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="Contacto">
-            <h2>Contacto</h2>
-            <p>Si deseas contactarme, puedes enviarme un correo a <a
-                    href="mailto:tuemail@ejemplo.com">tuemail@ejemplo.com</a>.</p>
+            <div class="container">
+                <h2>Contacto</h2>
+                <p>¿Tienes un proyecto interesante o simplemente quieres conversar sobre música, arte o código?
+                    Escríbeme.</p>
+
+                <form class="contact-form mt-4" action="https://formspree.io/f/idk.zero0day@gmail.com" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="mensaje" class="form-control" rows="5" placeholder="Mensaje"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar mensaje</button>
+                </form>
+
+                <div class="social-links">
+                    <a href="https://github.com/Ceeeeeeees" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/ces-saucedo" class="social-link"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/awkczar_1n" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://open.spotify.com/user/cesaritou-mx-3" class="social-link"><i
+                            class="fab fa-spotify"></i></a>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>Creado por Ceeeeeeees. (2025) &copy;   </p>
-        <p>Todos los derechos reservados.</p>
+        <p>Diseñado y desarrollado por César. &copy; <span id="current-year">2025</span></p>
+        <p class="mt-2"><span class="text-muted">Donde el código y los sueños son posibles.</span></p>
     </footer>
+
+    <!-- Bootstrap & Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Actualizar año actual
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Efecto typing para terminal-text
+        document.addEventListener('DOMContentLoaded', function () {
+            const texts = [
+                "Desarrollador web.",
+                "Entusiasta de la ciberseguridad.",
+                "Amante de la música.",
+                "Creador de soluciones."
+            ];
+
+            const terminalText = document.querySelector('.terminal-text');
+            let currentIndex = 0;
+
+            setInterval(() => {
+                terminalText.textContent = texts[currentIndex];
+                currentIndex = (currentIndex + 1) % texts.length;
+            }, 4000);
+        });
+    </script>
 </body>
 
 </html>
