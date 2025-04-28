@@ -124,7 +124,7 @@ section::after {
   font-size: 0.8rem;
 }
 
-/* Sección Sobre Mi */
+/* Ajustes para el efecto Matrix */
 #SobreMi {
   min-height: 100vh;
   display: flex;
@@ -133,6 +133,32 @@ section::after {
   align-items: center;
   text-align: center;
   background: radial-gradient(circle at center, #121212 0%, #080808 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 0; /* Eliminar el padding para que el canvas ocupe todo el espacio */
+}
+
+#matrixCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: block; /* Asegurarse de que el canvas se muestre */
+}
+
+#SobreMi .content-overlay {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+  background-color: rgba(10, 10, 10, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 140, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); /* Para Safari */
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 #SobreMi h1 {
@@ -285,6 +311,100 @@ section::after {
   box-shadow: 0 4px 8px rgba(0, 255, 140, 0.3);
 }
 
+/* Estilos completos para la sección de intereses */
+#Intereses {
+  background-color: #0a0a0a;
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+#Intereses h2 {
+  text-align: center;
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  margin-bottom: 3rem;
+}
+
+.interests-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.interest-card {
+  background-color: rgba(18, 18, 18, 0.8);
+  border: 1px solid var(--dark-accent);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding: 1.5rem;
+  height: 100%; /* Asegura altura igual */
+  display: flex;
+  flex-direction: column;
+}
+
+.interest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 255, 140, 0.2);
+  border-color: var(--accent-color);
+}
+
+.interest-card h3 {
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+  margin-bottom: 1rem;
+}
+
+.interest-card p {
+  margin-bottom: 1rem;
+}
+
+.artist-list, .book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.artist-list li, .book-list li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 20px;
+}
+
+.artist-list li::before, .book-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.art-item {
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  height: 120px;
+}
+
+.art-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.art-item:hover img {
+  transform: scale(1.1);
+}
+
 /* Sección de Contacto */
 #Contacto {
   background-color: #080808;
@@ -374,87 +494,6 @@ section::after {
   transform: translateY(-5px);
 }
 
-/* Intereses - Música y Arte */
-#Intereses {
-  background-color: #0a0a0a;
-}
-
-#Intereses h2 {
-  text-align: center;
-  font-family: var(--font-special);
-  color: var(--accent-color);
-  margin-bottom: 2rem;
-}
-
-.interests-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.interest-card {
-  background-color: rgba(18, 18, 18, 0.8);
-  border: 1px solid var(--dark-accent);
-  border-radius: 5px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  padding: 1.5rem;
-}
-
-.interest-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 255, 140, 0.2);
-  border-color: var(--accent-color);
-}
-
-.interest-card h3 {
-  color: var(--accent-color);
-  font-family: var(--font-mono);
-  margin-bottom: 1rem;
-}
-
-.artist-list {
-  list-style: none;
-}
-
-.artist-list li {
-  margin-bottom: 0.5rem;
-  position: relative;
-  padding-left: 20px;
-}
-
-.artist-list li::before {
-  content: ">";
-  position: absolute;
-  left: 0;
-  color: var(--accent-color);
-}
-
-.art-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.art-item {
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
-  height: 120px;
-}
-
-.art-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.3s ease;
-}
-
-.art-item:hover img {
-  transform: scale(1.1);
-}
-
 /* Footer */
 footer {
   background-color: #050505;
@@ -469,24 +508,37 @@ footer p {
   color: #888;
 }
 
-/* Terminal Typing Effect */
 .terminal-text {
+  font-family: var(--font-mono);
+  color: var(--text-color);
   border-right: 2px solid var(--accent-color);
   white-space: nowrap;
   overflow: hidden;
-  animation: typing 4s steps(50) infinite, blink-caret 0.75s step-end infinite;
   display: inline-block;
+  width: 0;
   max-width: 100%;
+  animation: typing 20s steps(20) 1s infinite, blink-caret 1s step-end infinite;
 }
 
 @keyframes typing {
-  0%, 100% { width: 0 }
-  50% { width: 100% }
+  0% {
+    width: 0;
+  }
+  30%, 70% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--accent-color) }
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--accent-color);
+  }
 }
 
 /* Media Queries para Responsive */
@@ -497,6 +549,12 @@ footer p {
   
   #SobreMi h1 {
     font-size: 2.5rem;
+  }
+  
+  #SobreMi .content-overlay {
+    padding: 1.5rem;
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
   }
   
   .projects-container,
@@ -520,11 +578,19 @@ footer p {
   .art-item {
     height: 80px;
   }
+  
+  .terminal-text {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
   #SobreMi h1 {
     font-size: 2rem;
+  }
+  
+  #SobreMi .content-overlay {
+    padding: 1rem;
   }
   
   .education-item {
@@ -534,6 +600,24 @@ footer p {
   .art-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .interest-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Media queries para los contenedores de intereses */
+@media (max-width: 992px) {
+  .interests-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .interests-container {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+  
   .interest-card {
     margin-bottom: 1.5rem;
   }

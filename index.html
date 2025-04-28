@@ -33,7 +33,7 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/index.html">
+                <a class="navbar-brand" href="">
                     Ceeeeeeees
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
@@ -65,16 +65,22 @@
 
     <main>
         <section id="SobreMi">
-            <h1>Hola, soy César :D</h1>
-            <p class="mt-3">
-                <span class="terminal-text">Desarrollador web con alma de artista.</span>
-            </p>
-            <p class="mt-4">
-                Apasionado por la ciberseguridad, el aprendizaje automático y el crecimiento personal.
-                Soy una persona curiosa, proactiva y que disfruta de los retos.
-            </p>
-            <div class="mt-5">
-                <a href="#Proyectos" class="btn-submit">Ver mis proyectos</a>
+            <canvas id="matrixCanvas"></canvas>
+            <div class="content-overlay">
+                <h1>Hola, soy César :D</h1>
+                <p class="mt-3">
+                    <span class="terminal-text">Desarrollador web y entusiasta por la tecnología.</span>
+                </p>
+                <p class="mt-4">
+                    Apasionado por la ciberseguridad, el aprendizaje automático y el crecimiento personal.
+                </p>
+                <p class="mt-4">
+                    Soy una persona curiosa, proactiva y que disfruta de los retos.
+                    Me encanta aprender sobre nuevas tecnologías y cómo pueden mejorar nuestras vidas.
+                </p>
+                <div class="mt-5">
+                    <a href="#Proyectos" class="btn-submit">Ver mis proyectos</a>
+                </div>
             </div>
         </section>
 
@@ -89,7 +95,8 @@
                             <p>
                                 Formación integral en el análisis y desarrollo de sistemas, algoritmos, bases de datos,
                                 redes de computadoras y
-                                cómputo en la nube.
+                                cómputo en la nube.</p>
+                            <p>
                                 Especialización en ciberseguridad y aprendizaje automático.
                             </p>
                         </div>
@@ -119,9 +126,9 @@
                 <div class="interests-container">
                     <div class="interest-card">
                         <h3>Música</h3>
-                        <p>La música me inspira siempre me ha acompañado, sin embargo, durante el proceso de escribir
-                            código es el que me inspira y motiva. Estos son algunos de mis artistas
-                            favoritos y algunos de sus álbumes:</p>
+                        <p>La música me inspira y siempre me ha acompañado, especialmente durante el proceso de escribir
+                            código donde me motiva e impulsa mi creatividad.</p>
+                        <p>Estos son algunos de mis artistas favoritos y algunos de sus álbumes:</p>
                         <ul class="artist-list">
                             <li>Zoé - Memo Rex y Programaton</li>
                             <li>Taylor Swift - Folklore y Midnights</li>
@@ -138,8 +145,8 @@
                         <p>Algunas de mis películas favoritas son:</p>
                         <ul class="book-list">
                             <li>Memento - Christopher Nolan</li>
-                            <li>Before sunrise - Richard Linklater</li>
-                            <li>Ex-machina - Alex Garland</li>
+                            <li>Before Sunrise - Richard Linklater</li>
+                            <li>Ex-Machina - Alex Garland</li>
                             <li>Se7en - David Fincher</li>
                         </ul>
                     </div>
@@ -163,7 +170,8 @@
                         <h3>Leer</h3>
                         <p>La lectura me transporta a otros mundos y me permite explorar nuevas ideas y perspectivas.
                         </p>
-                        <p>Pienso que enriquece mi espiritu y motiva mis acciones.</p>
+                        <p>Pienso que enriquece mi espíritu y motiva mis acciones.</p>
+                        <p>Estos son algunos de mis libros favoritos:</p>
                         <ul class="book-list">
                             <li>Donde habitan los ángeles - Claudia Celis</li>
                             <li>Al sur de la frontera, al oeste del sol - Haruki Murakami</li>
@@ -183,7 +191,7 @@
                         <!--<img src="#" alt="Proyecto 1">-->
                         <div class="project-content">
                             <h3>Intérprete</h3>
-                            <p>Desarrollo de un intérprete para la materia de compiladores, donde en compañía un
+                            <p>Desarrollo de un intérprete para la materia de compiladores, donde en compañía de un
                                 compañero trabajamos con las fases de análisis léxico, sintáctico y semántico.</p>
                             <div class="project-tags">
                                 <span class="project-tag">Java</span>
@@ -196,7 +204,6 @@
                                     <i class="fab fa-github"></i> Ver código
                                 </a>
                             </div>
-
                         </div>
                     </div>
                     <div class="project-card">
@@ -265,9 +272,6 @@
                     <a href="https://github.com/Ceeeeeeees" class="social-link"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/ces-saucedo" class="social-link"><i
                             class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/awkczar_1n" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="https://open.spotify.com/user/cesaritou-mx-3" class="social-link"><i
-                            class="fab fa-spotify"></i></a>
                 </div>
             </div>
         </section>
@@ -281,11 +285,11 @@
     <!-- Bootstrap & Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Actualizar año actual
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Efecto typing para terminal-text
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Actualizar año actual
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Efecto typing para terminal-text con una mejor implementación
             const texts = [
                 "Desarrollador web.",
                 "Entusiasta de la ciberseguridad.",
@@ -294,12 +298,135 @@
             ];
 
             const terminalText = document.querySelector('.terminal-text');
-            let currentIndex = 0;
+            if (terminalText) {
+                let currentIndex = 0;
+                
+                // Función para iniciar la animación de escritura
+                function typeNextText() {
+                    // Detener cualquier animación actual
+                    terminalText.style.animation = 'none';
+                    
+                    // Forzar reflow para asegurar que la animación se reinicie
+                    void terminalText.offsetWidth;
+                    
+                    // Asignar el nuevo texto
+                    terminalText.textContent = texts[currentIndex];
+                    
+                    // Reiniciar la animación
+                    terminalText.style.animation = 'typing 4s steps(30) 1s infinite, blink-caret 0.75s step-end infinite';
+                    
+                    // Avanzar al siguiente texto
+                    currentIndex = (currentIndex + 1) % texts.length;
+                    
+                    // Programar el siguiente cambio después de 5 segundos (duración de la animación completa)
+                    setTimeout(typeNextText, 5000);
+                }
+                
+                // Iniciar el ciclo de animación
+                typeNextText();
+            }
 
-            setInterval(() => {
-                terminalText.textContent = texts[currentIndex];
-                currentIndex = (currentIndex + 1) % texts.length;
-            }, 4000);
+            // Matrix effect
+            const canvas = document.getElementById('matrixCanvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+
+                // Setting canvas dimensions to match section size
+                function resizeCanvas() {
+                    const sobreMiSection = document.getElementById('SobreMi');
+                    canvas.width = sobreMiSection.offsetWidth;
+                    canvas.height = sobreMiSection.offsetHeight;
+                    // Reinitialize drops on resize
+                    initializeDrops();
+                }
+
+                window.addEventListener('resize', resizeCanvas);
+
+                // Characters for matrix effect
+                const pythonSyntax = [
+                    "def", "class", "import", "from", "if", "elif", "else", "for", "while",
+                    "return", "try:", "except:", "finally:", "with", "as", "lambda", "yield",
+                    "True", "False", "None", "self", "__init__"
+                ];
+
+                const hackerTerms = [
+                    "hack", "exploit", "breach", "payload", "backdoor", "buffer", "overflow",
+                    "sql", "injection", "xss", "firewall", "cipher", "encrypt", "decrypt",
+                    "DDoS", "keylogger", "phishing", "rootkit", "trojan", "malware",
+                    "zero-day"
+                ];
+
+                const musicRefs = [
+                    "Kanye", "Taylor", "Frank", "Ocean", "Swift", "West", "808s", "Blonde",
+                    "Zoé", "Memo Rex", "Programaton"
+                ];
+
+                const movieRefs = [
+                    "Memento", "Nolan", "Before Sunrise", "Ex-Machina", "Se7en", "Fincher"
+                ];
+
+                const bookRefs = [
+                    "Murakami", "Camus", "extranjero", "ángeles", "Sputnik"
+                ];
+
+                // All phrases combined
+                const allPhrases = [...pythonSyntax, ...hackerTerms, ...musicRefs, ...movieRefs, ...bookRefs];
+
+                // Matrix character columns
+                let drops = [];
+
+                // Initialize columns
+                function initializeDrops() {
+                    drops = [];
+                    const columnCount = Math.floor(canvas.width / 20); // Column width
+
+                    for (let i = 0; i < columnCount; i++) {
+                        drops.push({
+                            x: i * 20,
+                            y: Math.random() * -500, // Random starting position above canvas
+                            speed: Math.random() * 3 + 1, // Random speed
+                            phrase: allPhrases[Math.floor(Math.random() * allPhrases.length)],
+                            opacity: Math.random() * 0.5 + 0.3, // Random opacity
+                            size: Math.random() * 6 + 12 // Random font size
+                        });
+                    }
+                }
+
+                // Drawing function
+                function draw() {
+                    // Semi-transparent black overlay for fade effect
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    for (let i = 0; i < drops.length; i++) {
+                        const drop = drops[i];
+
+                        // Draw the phrase
+                        ctx.font = `${drop.size}px "Share Tech Mono", monospace`;
+                        ctx.fillStyle = `rgba(0, 255, 140, ${drop.opacity})`;
+                        ctx.fillText(drop.phrase, drop.x, drop.y);
+
+                        // Move the phrase down
+                        drop.y += drop.speed;
+
+                        // Reset when phrase goes off canvas with a new random phrase
+                        if (drop.y > canvas.height + 20) {
+                            drop.y = Math.random() * -200;
+                            drop.phrase = allPhrases[Math.floor(Math.random() * allPhrases.length)];
+                            drop.opacity = Math.random() * 0.5 + 0.3;
+                        }
+                    }
+
+                    // Loop animation
+                    requestAnimationFrame(draw);
+                }
+
+                // Call resize to set canvas dimensions and initialize drops
+                resizeCanvas();
+
+                // Start animation
+                draw();
+            }
         });
     </script>
 </body>
