@@ -162,11 +162,13 @@ function initializeMatrixEffect() {
     ];
 
     const movieRefs = [
-        "Memento", "Nolan", "Before Sunrise", "Ex-Machina", "Se7en", "Fincher"
+        "Memento", "Nolan", "Before Sunrise", "Ex-Machina", "Se7en", "Fincher", 
+        "Before Sunrise", "Before Sunset", "Tenet"
     ];
 
     const bookRefs = [
-        "Murakami", "Camus", "extranjero", "ángeles", "Sputnik"
+        "Murakami", "Camus", "extranjero", "ángeles", "Sputnik", "Mundo feliz",
+        "Levedad", "Peso", "Ser"
     ];
 
     // All phrases combined
@@ -202,7 +204,7 @@ function initializeMatrixEffect() {
             const drop = drops[i];
 
             // Draw the phrase
-            ctx.font = `${drop.size}px "Share Tech Mono", monospace`;
+            ctx.font = `${drop.size}px "JetBrains Mono", monospace`;
             ctx.fillStyle = `rgba(0, 255, 140, ${drop.opacity})`;
             ctx.fillText(drop.phrase, drop.x, drop.y);
 

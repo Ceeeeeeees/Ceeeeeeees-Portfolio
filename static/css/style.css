@@ -5,9 +5,9 @@
   --accent-color: #00ff8c;
   --secondary-accent: #ff00ff;
   --dark-accent: #121212;
-  --font-mono: 'Share Tech Mono', monospace;
-  --font-sans: 'Quicksand', sans-serif;
-  --font-special: 'Rubik Dirt', cursive;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+  --font-sans: 'Space Grotesk', -apple-system, 'Segoe UI', sans-serif;
+  --font-special: 'Orbitron', 'Impact', sans-serif;
 }
 
 * {
