@@ -10,7 +10,10 @@
 
     <title>Ceeeeeeees - Desarrollo Web</title>
 
-    <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon">
+    <!-- Favicons optimizados -->
+    <link rel="icon" type="image/svg+xml" href="./static/img/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
+    <link rel="apple-touch-icon" href="./static/img/favicon.svg">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,25 +21,17 @@
     <!-- Mi CSS -->
     <link rel="stylesheet" href="./static/css/style.css">
 
-    <!-- Google Fonts - Optimizadas -->
+    <!-- Google Fonts - Optimizadas con preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Orbitron:wght@700;900&display=swap">
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Orbitron:wght@700;900&display=swap"
         rel="stylesheet">
     <style>
-        /* Prevención de FOIT (Flash of Invisible Text) */
-        @font-face {
-            font-family: 'JetBrains Mono';
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Space Grotesk';
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Orbitron';
-            font-display: swap;
+        /* Prevención de FOUT con fallback fonts inmediatos */
+        body {
+            font-family: 'Consolas', 'Monaco', monospace;
         }
     </style>
 
@@ -59,6 +54,9 @@
                     <ul class="navbar-nav ms-auto d-flex justify-content-center align-items-center">
                         <li class="nav-item">
                             <a class="nav-link" href="#SobreMi">Sobre mí</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#TechStack">Stack</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#Educacion">Educación</a>
@@ -95,6 +93,162 @@
                 </p>
                 <div class="mt-5">
                     <a href="#Proyectos" class="btn-submit">Ver mis proyectos</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="TechStack">
+            <div class="container">
+                <h2 class="text-center mb-5">Stack Tecnológico</h2>
+                <div class="tech-grid">
+                    <!-- Lenguajes de Programación -->
+                    <div class="tech-item" data-tooltip="Python">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">
+                    </div>
+                    <div class="tech-item" data-tooltip="Java">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java">
+                    </div>
+                    <div class="tech-item" data-tooltip="Kotlin">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" alt="Kotlin">
+                    </div>
+                    <div class="tech-item" data-tooltip="C">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" alt="C">
+                    </div>
+                    <div class="tech-item" data-tooltip="Assembly">
+                        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+                            <!-- Monitor/Computer -->
+                            <rect x="20" y="30" width="88" height="55" fill="none" stroke="#00ff8c" stroke-width="3" rx="2"/>
+                            <rect x="25" y="35" width="78" height="45" fill="#0a0a0a"/>
+                            <!-- Binary code -->
+                            <text x="32" y="50" font-family="monospace" font-size="8" fill="#00ff8c">01001010</text>
+                            <text x="32" y="58" font-family="monospace" font-size="8" fill="#00ff8c">10110101</text>
+                            <text x="32" y="66" font-family="monospace" font-size="8" fill="#00ff8c">11010010</text>
+                            <text x="32" y="74" font-family="monospace" font-size="8" fill="#00ff8c">00101101</text>
+                            <!-- Base -->
+                            <rect x="55" y="85" width="18" height="8" fill="#00ff8c"/>
+                            <rect x="45" y="93" width="38" height="3" fill="#00ff8c"/>
+                        </svg>
+                    </div>
+                    <div class="tech-item" data-tooltip="JavaScript">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript">
+                    </div>
+
+                    <!-- Machine Learning & Data Science -->
+                    <div class="tech-item" data-tooltip="Scikit-learn">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn">
+                    </div>
+                    <div class="tech-item" data-tooltip="TensorFlow">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+                    </div>
+                    <div class="tech-item" data-tooltip="NumPy">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" alt="NumPy">
+                    </div>
+                    <div class="tech-item" data-tooltip="Pandas">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" alt="Pandas">
+                    </div>
+
+                    <!-- Python Libraries -->
+                    <div class="tech-item" data-tooltip="BeautifulSoup">
+                        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+                            <!-- Bowl -->
+                            <ellipse cx="64" cy="75" rx="45" ry="15" fill="none" stroke="#00ff8c" stroke-width="3"/>
+                            <path d="M 19 75 Q 19 95, 64 95 Q 109 95, 109 75" fill="none" stroke="#00ff8c" stroke-width="3"/>
+                            <!-- Steam -->
+                            <path d="M 45 60 Q 40 50, 45 40" fill="none" stroke="#00ff8c" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M 64 55 Q 59 45, 64 35" fill="none" stroke="#00ff8c" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M 83 60 Q 88 50, 83 40" fill="none" stroke="#00ff8c" stroke-width="2.5" stroke-linecap="round"/>
+                            <!-- Decorative -->
+                            <circle cx="64" cy="80" r="3" fill="#00ff8c"/>
+                        </svg>
+                    </div>
+                    <div class="tech-item" data-tooltip="spaCy">
+                        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+                            <!-- Hexagon shape inspired by spaCy -->
+                            <polygon points="64,20 95,35 95,65 64,80 33,65 33,35" fill="none" stroke="#00ff8c" stroke-width="3"/>
+                            <polygon points="64,30 85,40 85,60 64,70 43,60 43,40" fill="#00ff8c" opacity="0.3"/>
+                            <!-- Inner text -->
+                            <text x="64" y="57" font-family="sans-serif" font-size="18" font-weight="bold" fill="#00ff8c" text-anchor="middle">NLP</text>
+                        </svg>
+                    </div>
+
+                    <!-- Frontend & Design -->
+                    <div class="tech-item" data-tooltip="HTML5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5">
+                    </div>
+                    <div class="tech-item" data-tooltip="CSS3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3">
+                    </div>
+                    <div class="tech-item" data-tooltip="Bootstrap Studio">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap Studio">
+                    </div>
+                    <div class="tech-item" data-tooltip="Figma">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma">
+                    </div>
+
+                    <!-- Bases de Datos -->
+                    <div class="tech-item" data-tooltip="MySQL">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL">
+                    </div>
+                    <div class="tech-item" data-tooltip="MariaDB">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mariadb/mariadb-original.svg" alt="MariaDB">
+                    </div>
+
+                    <!-- Cloud Platforms -->
+                    <div class="tech-item" data-tooltip="Google Cloud">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">
+                    </div>
+                    <div class="tech-item" data-tooltip="Azure">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg" alt="Azure">
+                    </div>
+
+                    <!-- DevOps & Security -->
+                    <div class="tech-item" data-tooltip="Git">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git">
+                    </div>
+                    <div class="tech-item" data-tooltip="Azure DevOps">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg" alt="Azure DevOps">
+                    </div>
+                    <div class="tech-item" data-tooltip="Nmap">
+                        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+                            <circle cx="64" cy="64" r="50" fill="none" stroke="#00ff8c" stroke-width="3"/>
+                            <circle cx="64" cy="40" r="4" fill="#00ff8c"/>
+                            <circle cx="40" cy="64" r="4" fill="#00ff8c"/>
+                            <circle cx="64" cy="88" r="4" fill="#00ff8c"/>
+                            <circle cx="88" cy="64" r="4" fill="#00ff8c"/>
+                            <line x1="64" y1="64" x2="64" y2="40" stroke="#00ff8c" stroke-width="2"/>
+                            <line x1="64" y1="64" x2="40" y2="64" stroke="#00ff8c" stroke-width="2"/>
+                            <line x1="64" y1="64" x2="64" y2="88" stroke="#00ff8c" stroke-width="2"/>
+                            <line x1="64" y1="64" x2="88" y2="64" stroke="#00ff8c" stroke-width="2"/>
+                        </svg>
+                    </div>
+
+                    <!-- OS & Tools -->
+                    <div class="tech-item" data-tooltip="Linux">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux">
+                    </div>
+                    <div class="tech-item" data-tooltip="AIX">
+                        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+                            <!-- IBM-inspired design for AIX -->
+                            <rect x="20" y="20" width="88" height="88" fill="none" stroke="#00ff8c" stroke-width="3" rx="4"/>
+                            <!-- Horizontal stripes (IBM style) -->
+                            <rect x="30" y="35" width="68" height="8" fill="#00ff8c"/>
+                            <rect x="30" y="60" width="68" height="8" fill="#00ff8c"/>
+                            <rect x="30" y="85" width="68" height="8" fill="#00ff8c"/>
+                            <!-- AIX text -->
+                            <text x="64" y="55" font-family="monospace" font-size="16" font-weight="bold" fill="#0a0a0a" text-anchor="middle">AIX</text>
+                        </svg>
+                    </div>
+
+                    <!-- IDEs & Editors -->
+                    <div class="tech-item" data-tooltip="VS Code">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code">
+                    </div>
+                    <div class="tech-item" data-tooltip="IntelliJ IDEA">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/intellij/intellij-original.svg" alt="IntelliJ IDEA">
+                    </div>
+                    <div class="tech-item" data-tooltip="PyCharm">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pycharm/pycharm-original.svg" alt="PyCharm">
+                    </div>
                 </div>
             </div>
         </section>
@@ -171,13 +325,13 @@
                             intento replicar en mis proyectos.</p>
                         <div class="art-grid">
                             <div class="art-item">
-                                <img src="./static/img/flowersImpre.jpg" alt="Pintura impresionista de flores en tonos suaves y difusos" class="img-fluid" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=400&h=400&fit=crop&auto=format&q=75" alt="Pintura impresionista de flores en tonos suaves y difusos" class="img-fluid" loading="lazy">
                             </div>
                             <div class="art-item">
-                                <img src="./static/img/impre.jpg" alt="Obra impresionista con juego de luces y sombras" class="img-fluid" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1578926314433-e2789279f4aa?w=400&h=400&fit=crop&auto=format&q=75" alt="Obra impresionista con juego de luces y sombras" class="img-fluid" loading="lazy">
                             </div>
                             <div class="art-item">
-                                <img src="./static/img/impre2.jpg" alt="Paisaje impresionista con técnica de pinceladas visibles" class="img-fluid" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=400&fit=crop&auto=format&q=75" alt="Paisaje impresionista con técnica de pinceladas visibles" class="img-fluid" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -203,7 +357,60 @@
                 <h2>Proyectos</h2>
                 <div class="projects-container">
                     <div class="project-card">
-                        <!--<img src="#" alt="Proyecto 1">-->
+                        <div class="project-content">
+                            <h3>Web Scraping de Artículos Científicos</h3>
+                            <p>Extracción automatizada de artículos científicos utilizando BeautifulSoup. Se recolectaron 300 artículos de ArXiv y 300 de PubMed para análisis de investigación.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">BeautifulSoup</span>
+                                <span class="project-tag">Web Scraping</span>
+                                <span class="project-tag">ArXiv</span>
+                                <span class="project-tag">PubMed</span>
+                            </div>
+                            <div class="project-links mt-3">
+                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Practicas/Practica_2" class="github-link" target="_blank">
+                                    <i class="fab fa-github"></i> Ver código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Detector de Discurso de Odio</h3>
+                            <p>Sistema de detección de discurso de odio utilizando modelos de lenguaje avanzados. Implementación con TensorFlow y LLMs de HuggingFace como BERT, RoBERTa y otros transformers.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">TensorFlow</span>
+                                <span class="project-tag">BERT</span>
+                                <span class="project-tag">RoBERTa</span>
+                                <span class="project-tag">HuggingFace</span>
+                                <span class="project-tag">NLP</span>
+                            </div>
+                            <div class="project-links mt-3">
+                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Proyecto" class="github-link" target="_blank">
+                                    <i class="fab fa-github"></i> Ver código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Detector de Clickbait (2 Fases)</h3>
+                            <p>Proyecto dividido en dos fases: Fase 1 utilizando Machine Learning tradicional (Scikit-learn), y Fase 2 con fine-tuning de LLMs usando TensorFlow y HuggingFace entrenados con dataset personalizado.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Scikit-learn</span>
+                                <span class="project-tag">TensorFlow</span>
+                                <span class="project-tag">HuggingFace</span>
+                                <span class="project-tag">Fine-tuning</span>
+                                <span class="project-tag">NLP</span>
+                            </div>
+                            <div class="project-links mt-3">
+                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Practicas/Practica_4" class="github-link" target="_blank">
+                                    <i class="fab fa-github"></i> Ver código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
                         <div class="project-content">
                             <h3>Intérprete</h3>
                             <p>Desarrollo de un intérprete para la materia de compiladores, donde en compañía de un
@@ -222,7 +429,6 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <!--<img src="#" alt="Proyecto 2">-->
                         <div class="project-content">
                             <h3>Laberintos y agentes inteligentes</h3>
                             <p>Desarrollo e implementación de algoritmos como A* para la resolución de laberintos y la
@@ -241,7 +447,6 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <!--<img src="#" alt="Proyecto 3">-->
                         <div class="project-content">
                             <h3>Clasificación de tweets</h3>
                             <p>Desarrollo de un modelo para la clasificación de tweets según el sentimiento, utilizando
