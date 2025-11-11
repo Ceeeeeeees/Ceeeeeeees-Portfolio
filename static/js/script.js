@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Banner de cookies
     initializeCookieBanner();
+
+    // Mejorar animación del menú hamburguesa
+    initializeHamburgerAnimation();
 });
 
 function detectFontsLoaded() {
@@ -296,8 +299,9 @@ function initializeMatrixEffect() {
 
     // Drawing function
     function draw() {
-        // Detectar si estamos en modo claro
+        // Detectar si estamos en modo claro y/o monocromo
         const isLightMode = document.body.classList.contains('light-mode');
+        const isMonochrome = document.body.classList.contains('monochrome-mode');
 
         // Semi-transparent overlay for fade effect (diferente según el modo)
         if (isLightMode) {
@@ -313,11 +317,15 @@ function initializeMatrixEffect() {
             // Draw the phrase con color según el modo
             ctx.font = `${drop.size}px "JetBrains Mono", monospace`;
 
-            if (isLightMode) {
-                // En modo claro: usar verde más oscuro
+            // Determinar el color según el modo
+            if (isLightMode && isMonochrome) {
+                // Modo claro + monocromo: usar azul
+                ctx.fillStyle = `rgba(37, 99, 235, ${drop.opacity})`;
+            } else if (isLightMode) {
+                // Modo claro normal: usar verde oscuro
                 ctx.fillStyle = `rgba(0, 150, 80, ${drop.opacity})`;
             } else {
-                // En modo oscuro: usar verde neón
+                // Modo oscuro: usar verde neón
                 ctx.fillStyle = `rgba(0, 255, 140, ${drop.opacity})`;
             }
 
@@ -660,5 +668,25 @@ function disableGoogleAnalytics() {
         if (c.trim().startsWith('_ga')) {
             document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
         }
+    });
+}
+
+function initializeHamburgerAnimation() {
+    // Asegurar que el botón hamburguesa tenga la clase "collapsed" inicialmente
+    const toggleButton = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbar-toggler');
+
+    if (!toggleButton || !navbarCollapse) return;
+
+    // Inicializar con clase collapsed
+    toggleButton.classList.add('collapsed');
+
+    // Escuchar eventos de Bootstrap para sincronizar la animación
+    navbarCollapse.addEventListener('show.bs.collapse', function() {
+        toggleButton.classList.remove('collapsed');
+    });
+
+    navbarCollapse.addEventListener('hide.bs.collapse', function() {
+        toggleButton.classList.add('collapsed');
     });
 }
