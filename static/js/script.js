@@ -574,7 +574,8 @@ function enableGoogleAnalytics() {
     // Habilitar Google Analytics
     if (typeof gtag === 'function') {
         gtag('consent', 'update', {
-            'analytics_storage': 'granted'
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted'
         });
         console.log('Google Analytics habilitado');
     }
