@@ -551,22 +551,22 @@ section::after {
 @media (max-width: 480px) {
   .tech-grid {
     grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 2.5rem;
+    gap: 2rem;
     padding-bottom: 2rem;
-    max-width: 220px; /* Limitar ancho máximo en móvil */
+    max-width: 140px; /* Limitar ancho máximo en móvil */
     margin: 0 auto;
   }
 
   .tech-item {
-    padding: 1rem;
+    padding: 0.75rem;
     margin-bottom: 0;
     max-width: 100%;
   }
 
   .tech-item img,
   .tech-item svg {
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 40px;
+    max-height: 40px;
   }
 
   .tech-item::before {
@@ -1229,15 +1229,15 @@ footer p {
 
   .tech-grid {
     grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 2.5rem;
+    gap: 2rem;
     padding: 1rem;
     padding-bottom: 3rem;
-    max-width: 200px; /* Limitar ancho máximo en móviles pequeños */
+    max-width: 130px; /* Limitar ancho máximo en móviles pequeños */
     margin: 0 auto;
   }
 
   .tech-item {
-    padding: 0.9rem;
+    padding: 0.7rem;
     margin-bottom: 0;
     max-width: 100%;
   }
@@ -1372,9 +1372,13 @@ footer p {
 
   .tech-grid {
     grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 2rem;
-    max-width: 180px; /* Limitar ancho máximo en móviles muy pequeños */
+    gap: 1.8rem;
+    max-width: 120px; /* Limitar ancho máximo en móviles muy pequeños */
     margin: 0 auto;
+  }
+
+  .tech-item {
+    padding: 0.65rem;
   }
 
   .btn-submit {
