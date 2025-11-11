@@ -8,8 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Detectar cuando las fuentes se han cargado
     detectFontsLoaded();
 
-    // Toggle para modo de tema (claro/oscuro)
-    initializeThemeToggle();
+    // Toggle para modo de tema (claro/oscuro) en nav
+    initializeLightDarkToggle();
+
+    // Toggle para modo monocromo (botón flotante)
+    initializeMonochromeToggle();
 
     // Efecto typing para terminal-text
     initializeTypingEffect();
@@ -48,19 +51,19 @@ function detectFontsLoaded() {
     }
 }
 
-function initializeThemeToggle() {
-    // Obtener el botón que ya existe en el HTML
-    const toggleButton = document.getElementById('themeToggle');
+function initializeLightDarkToggle() {
+    // Obtener el botón en el nav
+    const toggleButton = document.getElementById('lightDarkToggle');
     if (!toggleButton) {
-        console.error('No se encontró el botón de toggle de tema');
+        console.error('No se encontró el botón de light/dark toggle');
         return;
     }
 
     // Verificar si hay una preferencia guardada
-    const savedTheme = localStorage.getItem('theme-mode') || 'dark';
+    const savedTheme = localStorage.getItem('light-dark-mode') || 'dark';
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
-        updateThemeButton(toggleButton, true);
+        updateLightDarkButton(toggleButton, true);
     }
 
     // Event listener para el toggle
@@ -69,17 +72,24 @@ function initializeThemeToggle() {
 
         if (isCurrentlyLight) {
             document.body.classList.remove('light-mode');
-            localStorage.setItem('theme-mode', 'dark');
-            updateThemeButton(toggleButton, false);
+            localStorage.setItem('light-dark-mode', 'dark');
+            updateLightDarkButton(toggleButton, false);
         } else {
             document.body.classList.add('light-mode');
-            localStorage.setItem('theme-mode', 'light');
-            updateThemeButton(toggleButton, true);
+            localStorage.setItem('light-dark-mode', 'light');
+            updateLightDarkButton(toggleButton, true);
+        }
+
+        // Actualizar el botón de monocromo también
+        const monochromeButton = document.getElementById('monochromeToggle');
+        if (monochromeButton) {
+            const isMonochrome = document.body.classList.contains('monochrome-mode');
+            updateMonochromeButton(monochromeButton, isMonochrome);
         }
     });
 }
 
-function updateThemeButton(button, isLight) {
+function updateLightDarkButton(button, isLight) {
     if (isLight) {
         button.innerHTML = '<i class="fas fa-sun"></i>';
         button.title = 'Cambiar a tema oscuro';
@@ -88,6 +98,61 @@ function updateThemeButton(button, isLight) {
         button.innerHTML = '<i class="fas fa-moon"></i>';
         button.title = 'Cambiar a tema claro';
         button.setAttribute('aria-label', 'Cambiar a tema claro');
+    }
+}
+
+function initializeMonochromeToggle() {
+    // Obtener el botón flotante
+    const toggleButton = document.getElementById('monochromeToggle');
+    if (!toggleButton) {
+        console.error('No se encontró el botón de monochrome toggle');
+        return;
+    }
+
+    // Verificar si hay una preferencia guardada
+    const savedMode = localStorage.getItem('monochrome-mode') || 'color';
+    if (savedMode === 'monochrome') {
+        document.body.classList.add('monochrome-mode');
+        updateMonochromeButton(toggleButton, true);
+    }
+
+    // Event listener para el toggle
+    toggleButton.addEventListener('click', function() {
+        const isCurrentlyMonochrome = document.body.classList.contains('monochrome-mode');
+
+        if (isCurrentlyMonochrome) {
+            document.body.classList.remove('monochrome-mode');
+            localStorage.setItem('monochrome-mode', 'color');
+            updateMonochromeButton(toggleButton, false);
+        } else {
+            document.body.classList.add('monochrome-mode');
+            localStorage.setItem('monochrome-mode', 'monochrome');
+            updateMonochromeButton(toggleButton, true);
+        }
+    });
+}
+
+function updateMonochromeButton(button, isMonochrome) {
+    const isLightMode = document.body.classList.contains('light-mode');
+
+    if (isMonochrome) {
+        button.innerHTML = '<i class="fas fa-palette"></i>';
+        if (isLightMode) {
+            button.title = 'Volver a colores verde';
+            button.setAttribute('aria-label', 'Volver a colores verde');
+        } else {
+            button.title = 'Volver a modo color';
+            button.setAttribute('aria-label', 'Volver a modo color');
+        }
+    } else {
+        button.innerHTML = '<i class="fas fa-adjust"></i>';
+        if (isLightMode) {
+            button.title = 'Cambiar a colores azules';
+            button.setAttribute('aria-label', 'Cambiar a colores azules');
+        } else {
+            button.title = 'Cambiar a modo monocromo';
+            button.setAttribute('aria-label', 'Cambiar a modo monocromo');
+        }
     }
 }
 

@@ -16,7 +16,9 @@
 
         gtag('js', new Date());
         gtag('config', 'G-8PR9GRNYM3', {
-            'anonymize_ip': true
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure',
+            'cookie_domain': 'auto'
         });
     </script>
 
@@ -111,6 +113,11 @@
                             <a class="nav-link btn-cv" href="#" id="downloadCV" aria-label="Descargar CV">
                                 <i class="fas fa-download"></i> CV
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="theme-toggle nav-theme-toggle" id="lightDarkToggle" aria-label="Cambiar tema">
+                                <i class="fas fa-moon"></i>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -577,9 +584,9 @@
         <p class="mt-2"><span class="text-muted">Donde el código y los sueños son posibles.</span></p>
     </footer>
 
-    <!-- Botón flotante para cambiar tema claro/oscuro -->
-    <button class="theme-toggle fixed-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar a tema claro">
-        <i class="fas fa-moon"></i>
+    <!-- Botón flotante para cambiar a modo monocromo -->
+    <button class="theme-toggle fixed-toggle" id="monochromeToggle" aria-label="Cambiar a modo monocromo" title="Cambiar a modo monocromo">
+        <i class="fas fa-adjust"></i>
     </button>
 
     <!-- Banner de cookies para GDPR -->
