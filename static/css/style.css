@@ -16,6 +16,36 @@
   box-sizing: border-box;
 }
 
+/* Skip link para accesibilidad */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-color);
+  color: var(--main-bg-color);
+  padding: 8px 16px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Mejorar visibilidad del focus para navegación por teclado */
+*:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
 body {
   background-color: var(--main-bg-color);
   color: var(--text-color);
@@ -96,6 +126,38 @@ body::before {
 .nav-link:hover::before,
 .nav-link:hover::after {
   opacity: 1;
+}
+
+/* Botón CV en navegación */
+.btn-cv {
+  background-color: transparent;
+  color: var(--accent-color) !important;
+  border: 1px solid var(--accent-color);
+  padding: 0.4rem 1rem !important;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin-left: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-cv:hover {
+  background-color: var(--accent-color);
+  color: var(--main-bg-color) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 255, 140, 0.3);
+}
+
+.btn-cv i {
+  font-size: 0.9rem;
+}
+
+/* No aplicar decoradores de corchetes al botón CV */
+.btn-cv::before,
+.btn-cv::after {
+  content: none !important;
 }
 
 /* Secciones principales */
@@ -350,6 +412,45 @@ section::after {
   color: var(--secondary-accent);
   font-family: var(--font-mono);
   font-size: 0.9rem;
+}
+
+.education-item .company {
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.3rem;
+}
+
+/* Sección Experiencia */
+#Experiencia {
+  background-color: #0b0b0b;
+}
+
+#Experiencia h2 {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+}
+
+.experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.experience-list li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.experience-list li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-size: 1.2rem;
 }
 
 /* Sección Proyectos */
@@ -830,6 +931,48 @@ footer p {
   object-fit: cover;
   transition: all 0.3s ease;
   loading: lazy;
+}
+
+/* Notificación de CV */
+.cv-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: rgba(18, 18, 18, 0.95);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 255, 140, 0.3);
+  z-index: 9999;
+  transform: translateX(400px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  max-width: 350px;
+}
+
+.cv-notification.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.cv-notification-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cv-notification-content i {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.cv-notification-content p {
+  margin: 0;
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 /* Media queries para los contenedores de intereses */
