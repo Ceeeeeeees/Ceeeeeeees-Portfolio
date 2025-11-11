@@ -5,10 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
         currentYearElement.textContent = new Date().getFullYear();
     }
 
-    // Toggle para modo blanco y negro
-    initializeColorModeToggle();
+    // Detectar cuando las fuentes se han cargado
+    detectFontsLoaded();
 
-    // Efecto typing para terminal-text (corrigiendo el bug)
+    // Toggle para modo de tema (claro/oscuro)
+    initializeThemeToggle();
+
+    // Efecto typing para terminal-text
     initializeTypingEffect();
 
     // Matrix effect
@@ -16,46 +19,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Funcionalidad de descarga de CV
     initializeDownloadCV();
+
+    // Animaciones al hacer scroll
+    initializeScrollAnimations();
+
+    // Banner de cookies
+    initializeCookieBanner();
 });
 
-function initializeColorModeToggle() {
+function detectFontsLoaded() {
+    // Detectar cuando las fuentes de Google se han cargado
+    if ('fonts' in document) {
+        Promise.all([
+            document.fonts.load('1em JetBrains Mono'),
+            document.fonts.load('1em Space Grotesk'),
+            document.fonts.load('1em Orbitron')
+        ]).then(() => {
+            document.documentElement.classList.add('fonts-loaded');
+        }).catch(() => {
+            // Si falla, usar fuentes del sistema
+            console.log('Usando fuentes del sistema');
+        });
+    } else {
+        // Navegador antiguo, asumir carga después de un tiempo
+        setTimeout(() => {
+            document.documentElement.classList.add('fonts-loaded');
+        }, 1000);
+    }
+}
+
+function initializeThemeToggle() {
     // Obtener el botón que ya existe en el HTML
-    const toggleButton = document.getElementById('colorModeToggle');
+    const toggleButton = document.getElementById('themeToggle');
     if (!toggleButton) {
-        console.error('No se encontró el botón de toggle de color');
+        console.error('No se encontró el botón de toggle de tema');
         return;
     }
-    
+
     // Verificar si hay una preferencia guardada
-    const isMonochrome = localStorage.getItem('monochrome-mode') === 'true';
-    if (isMonochrome) {
-        document.body.classList.add('monochrome-mode');
-        updateToggleButton(toggleButton, true);
+    const savedTheme = localStorage.getItem('theme-mode') || 'dark';
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        updateThemeButton(toggleButton, true);
     }
-    
+
     // Event listener para el toggle
     toggleButton.addEventListener('click', function() {
-        const isCurrentlyMonochrome = document.body.classList.contains('monochrome-mode');
-        
-        if (isCurrentlyMonochrome) {
-            document.body.classList.remove('monochrome-mode');
-            localStorage.setItem('monochrome-mode', 'false');
-            updateToggleButton(toggleButton, false);
+        const isCurrentlyLight = document.body.classList.contains('light-mode');
+
+        if (isCurrentlyLight) {
+            document.body.classList.remove('light-mode');
+            localStorage.setItem('theme-mode', 'dark');
+            updateThemeButton(toggleButton, false);
         } else {
-            document.body.classList.add('monochrome-mode');
-            localStorage.setItem('monochrome-mode', 'true');
-            updateToggleButton(toggleButton, true);
+            document.body.classList.add('light-mode');
+            localStorage.setItem('theme-mode', 'light');
+            updateThemeButton(toggleButton, true);
         }
     });
 }
 
-function updateToggleButton(button, isMonochrome) {
-    if (isMonochrome) {
-        button.innerHTML = '<i class="fas fa-eye"></i>';
-        button.title = 'Cambiar a modo color';
+function updateThemeButton(button, isLight) {
+    if (isLight) {
+        button.innerHTML = '<i class="fas fa-sun"></i>';
+        button.title = 'Cambiar a tema oscuro';
+        button.setAttribute('aria-label', 'Cambiar a tema oscuro');
     } else {
-        button.innerHTML = '<i class="fas fa-palette"></i>';
-        button.title = 'Cambiar a modo blanco y negro';
+        button.innerHTML = '<i class="fas fa-moon"></i>';
+        button.title = 'Cambiar a tema claro';
+        button.setAttribute('aria-label', 'Cambiar a tema claro');
     }
 }
 
@@ -199,16 +231,31 @@ function initializeMatrixEffect() {
 
     // Drawing function
     function draw() {
-        // Semi-transparent black overlay for fade effect
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        // Detectar si estamos en modo claro
+        const isLightMode = document.body.classList.contains('light-mode');
+
+        // Semi-transparent overlay for fade effect (diferente según el modo)
+        if (isLightMode) {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+        } else {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        }
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         for (let i = 0; i < drops.length; i++) {
             const drop = drops[i];
 
-            // Draw the phrase
+            // Draw the phrase con color según el modo
             ctx.font = `${drop.size}px "JetBrains Mono", monospace`;
-            ctx.fillStyle = `rgba(0, 255, 140, ${drop.opacity})`;
+
+            if (isLightMode) {
+                // En modo claro: usar verde más oscuro
+                ctx.fillStyle = `rgba(0, 150, 80, ${drop.opacity})`;
+            } else {
+                // En modo oscuro: usar verde neón
+                ctx.fillStyle = `rgba(0, 255, 140, ${drop.opacity})`;
+            }
+
             ctx.fillText(drop.phrase, drop.x, drop.y);
 
             // Move the phrase down
@@ -270,27 +317,282 @@ function initializeDownloadCV() {
 }
 
 function showCVNotification() {
-    // Crear notificación temporal
+    // Crear overlay oscuro
+    const overlay = document.createElement('div');
+    overlay.className = 'cv-overlay';
+    overlay.id = 'cvOverlay';
+
+    // Crear modal con Bob Constructor
     const notification = document.createElement('div');
     notification.className = 'cv-notification';
+    notification.id = 'cvNotification';
     notification.innerHTML = `
+        <button class="cv-notification-close" id="closeCVModal" aria-label="Cerrar">
+            <i class="fas fa-times"></i>
+        </button>
         <div class="cv-notification-content">
-            <i class="fas fa-info-circle"></i>
-            <p>CV en construcción. Por favor, contacta conmigo para más información.</p>
+            <div class="bob-constructor">👷‍♂️</div>
+            <h3 class="cv-notification-title">¡En Construcción!</h3>
+            <p class="cv-notification-text">
+                Estoy trabajando en mi CV profesional.<br>
+                Mientras tanto, ¡explora mi portafolio!
+            </p>
+            <div class="cv-notification-tools">
+                <span>🔨</span>
+                <span>🚧</span>
+                <span>⚙️</span>
+            </div>
         </div>
     `;
+
+    // Añadir al DOM
+    document.body.appendChild(overlay);
     document.body.appendChild(notification);
 
-    // Mostrar notificación
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-
-    // Ocultar y eliminar después de 4 segundos
-    setTimeout(() => {
+    // Función para cerrar el modal
+    const closeModal = () => {
         notification.classList.remove('show');
+        overlay.classList.remove('show');
+
         setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 4000);
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, 400);
+    };
+
+    // Event listeners para cerrar
+    const closeButton = document.getElementById('closeCVModal');
+    closeButton.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
+    // Cerrar con tecla ESC
+    const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', handleEscape);
+        }
+    };
+    document.addEventListener('keydown', handleEscape);
+
+    // Mostrar modal con animación
+    setTimeout(() => {
+        overlay.classList.add('show');
+        notification.classList.add('show');
+    }, 50);
+
+    // Auto-cerrar después de 6 segundos (opcional)
+    setTimeout(() => {
+        if (document.body.contains(notification)) {
+            closeModal();
+        }
+    }, 6000);
+}
+
+function initializeScrollAnimations() {
+    // Respetar preferencia de movimiento reducido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        return; // No aplicar animaciones si el usuario prefiere movimiento reducido
+    }
+
+    // Observador de intersección ultra suave y completamente bidireccional
+    const observerOptions = {
+        root: null,
+        rootMargin: '-80px 0px -80px 0px', // Más margen para activación temprana
+        threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.25] // Múltiples puntos para suavidad máxima
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // COMPLETAMENTE BIDIRECCIONAL: Añadir/remover clase según visibilidad
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            } else {
+                // Remover clase cuando sale del viewport EN CUALQUIER DIRECCIÓN
+                entry.target.classList.remove('revealed');
+            }
+        });
+    }, observerOptions);
+
+    // Arrays de efectos variados para rotación
+    const slideEffects = ['scroll-slide-left', 'scroll-slide-right', 'scroll-diagonal-left', 'scroll-diagonal-right'];
+    const scaleEffects = ['scroll-scale', 'scroll-blur'];
+
+    // Añadir clases de animación a las secciones con efectos rotatorios
+    const sections = document.querySelectorAll('section:not(#SobreMi)');
+    sections.forEach((section, index) => {
+        // Alternar entre diferentes efectos
+        if (index % 3 === 0) {
+            section.classList.add('scroll-reveal');
+        } else if (index % 3 === 1) {
+            section.classList.add('scroll-blur');
+        } else {
+            section.classList.add('scroll-rotate-up');
+        }
+        observer.observe(section);
+    });
+
+    // Añadir animaciones ULTRA VARIADAS a las tarjetas de proyectos
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach((card, index) => {
+        // Ciclo de 4 efectos diferentes
+        const effectIndex = index % 4;
+        card.classList.add(slideEffects[effectIndex]);
+        card.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(card);
+    });
+
+    // Añadir animaciones variadas a las tarjetas de intereses
+    const interestCards = document.querySelectorAll('.interest-card');
+    interestCards.forEach((card, index) => {
+        // Alternar entre scale y blur
+        if (index % 2 === 0) {
+            card.classList.add('scroll-scale');
+        } else {
+            card.classList.add('scroll-blur');
+        }
+        card.style.transitionDelay = `${index * 0.15}s`;
+        observer.observe(card);
+    });
+
+    // Añadir animaciones a los items tecnológicos con fade ultra suave
+    const techItems = document.querySelectorAll('.tech-item');
+    techItems.forEach((item, index) => {
+        item.classList.add('scroll-fade-in');
+        item.style.transitionDelay = `${index * 0.02}s`;
+        observer.observe(item);
+    });
+
+    // Añadir animaciones variadas a los items de educación
+    const educationItems = document.querySelectorAll('.education-item');
+    educationItems.forEach((item, index) => {
+        // Alternar entre diferentes efectos de slide
+        if (index % 2 === 0) {
+            item.classList.add('scroll-diagonal-left');
+        } else {
+            item.classList.add('scroll-slide-left');
+        }
+        item.style.transitionDelay = `${index * 0.15}s`;
+        observer.observe(item);
+    });
+
+    // Añadir animación especial a los títulos de cada sección
+    const sectionHeaders = document.querySelectorAll('section h2');
+    sectionHeaders.forEach((header, index) => {
+        header.classList.add('scroll-rotate-up');
+        header.style.transitionDelay = '0.2s';
+        observer.observe(header);
+    });
+
+    // Añadir animaciones a los íconos del arte
+    const artItems = document.querySelectorAll('.art-item');
+    artItems.forEach((item, index) => {
+        item.classList.add('scroll-scale');
+        item.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(item);
+    });
+
+    // Añadir animaciones a los links sociales
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach((link, index) => {
+        link.classList.add('scroll-scale');
+        link.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(link);
+    });
+
+    // Animación inicial suave del hero overlay
+    const heroOverlay = document.querySelector('#SobreMi .content-overlay');
+    if (heroOverlay) {
+        heroOverlay.style.opacity = '0';
+        heroOverlay.style.transform = 'translateY(40px) scale(0.95)';
+        heroOverlay.style.filter = 'blur(5px)';
+        heroOverlay.style.transition = 'opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 1.5s cubic-bezier(0.16, 1, 0.3, 1)';
+
+        setTimeout(() => {
+            heroOverlay.style.opacity = '1';
+            heroOverlay.style.transform = 'translateY(0) scale(1)';
+            heroOverlay.style.filter = 'blur(0px)';
+        }, 400);
+    }
+
+    // Añadir efecto suave al navbar al cargar
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.style.opacity = '0';
+        navbar.style.transform = 'translateY(-20px)';
+        navbar.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+
+        setTimeout(() => {
+            navbar.style.opacity = '1';
+            navbar.style.transform = 'translateY(0)';
+        }, 200);
+    }
+}
+
+function initializeCookieBanner() {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptButton = document.getElementById('acceptCookies');
+    const declineButton = document.getElementById('declineCookies');
+
+    if (!cookieBanner || !acceptButton || !declineButton) {
+        console.error('No se encontraron los elementos del banner de cookies');
+        return;
+    }
+
+    // Verificar si el usuario ya respondió sobre las cookies
+    const cookieConsent = localStorage.getItem('cookie-consent');
+
+    if (!cookieConsent) {
+        // Mostrar banner después de 1 segundo
+        setTimeout(() => {
+            cookieBanner.classList.add('show');
+        }, 1000);
+    } else if (cookieConsent === 'accepted') {
+        enableGoogleAnalytics();
+    }
+
+    // Aceptar cookies
+    acceptButton.addEventListener('click', () => {
+        localStorage.setItem('cookie-consent', 'accepted');
+        cookieBanner.classList.remove('show');
+        enableGoogleAnalytics();
+    });
+
+    // Rechazar cookies
+    declineButton.addEventListener('click', () => {
+        localStorage.setItem('cookie-consent', 'declined');
+        cookieBanner.classList.remove('show');
+        disableGoogleAnalytics();
+    });
+}
+
+function enableGoogleAnalytics() {
+    // Habilitar Google Analytics
+    if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+        });
+        console.log('Google Analytics habilitado');
+    }
+}
+
+function disableGoogleAnalytics() {
+    // Deshabilitar Google Analytics
+    if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+            'analytics_storage': 'denied'
+        });
+        console.log('Google Analytics deshabilitado');
+    }
+
+    // Eliminar cookies de Google Analytics si existen
+    document.cookie.split(";").forEach(function(c) {
+        if (c.trim().startsWith('_ga')) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        }
+    });
 }
