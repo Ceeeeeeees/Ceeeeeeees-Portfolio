@@ -520,14 +520,14 @@ section::after {
 /* Responsive para tech grid */
 @media (max-width: 768px) {
   .tech-grid {
-    grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 3rem 1.2rem;
     padding: 1rem;
     padding-bottom: 2rem;
   }
 
   .tech-item {
-    padding: 1.2rem;
+    padding: 1rem;
     margin-bottom: 0;
   }
 
@@ -550,20 +550,23 @@ section::after {
 
 @media (max-width: 480px) {
   .tech-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4.5rem 1rem; /* Gap vertical MUY grande para tooltips */
-    padding-bottom: 3rem; /* Padding extra abajo */
+    grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
+    gap: 2.5rem;
+    padding-bottom: 2rem;
+    max-width: 220px; /* Limitar ancho máximo en móvil */
+    margin: 0 auto;
   }
 
   .tech-item {
-    padding: 0.8rem;
-    margin-bottom: 1.5rem; /* Espacio extra */
+    padding: 1rem;
+    margin-bottom: 0;
+    max-width: 100%;
   }
 
   .tech-item img,
   .tech-item svg {
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 50px;
+    max-height: 50px;
   }
 
   .tech-item::before {
@@ -1041,8 +1044,8 @@ footer p {
   }
 
   .tech-grid {
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 3.5rem 1.5rem; /* Mayor gap vertical para tooltips */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 3rem 1.5rem;
   }
 
   .projects-container,
@@ -1226,14 +1229,17 @@ footer p {
 
   .tech-grid {
     grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 3rem;
+    gap: 2.5rem;
     padding: 1rem;
     padding-bottom: 3rem;
+    max-width: 200px; /* Limitar ancho máximo en móviles pequeños */
+    margin: 0 auto;
   }
 
   .tech-item {
-    padding: 1.2rem;
+    padding: 0.9rem;
     margin-bottom: 0;
+    max-width: 100%;
   }
 
   .tech-item img,
@@ -1366,7 +1372,9 @@ footer p {
 
   .tech-grid {
     grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 2.5rem;
+    gap: 2rem;
+    max-width: 180px; /* Limitar ancho máximo en móviles muy pequeños */
+    margin: 0 auto;
   }
 
   .btn-submit {
@@ -1460,6 +1468,7 @@ body.light-mode::before {
 
 /* Navbar en modo claro */
 body.light-mode .navbar {
+  padding: 1rem 0;
   background-color: rgba(255, 255, 255, 0.98);
   border-bottom: 2px solid var(--light-accent-color);
   box-shadow: 0 2px 12px var(--light-shadow),
