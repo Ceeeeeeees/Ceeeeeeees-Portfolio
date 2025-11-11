@@ -520,15 +520,15 @@ section::after {
 /* Responsive para tech grid */
 @media (max-width: 768px) {
   .tech-grid {
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 4rem 1.5rem; /* Gap vertical muy grande para evitar sobreposición */
+    grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
+    gap: 3rem;
     padding: 1rem;
-    padding-bottom: 3rem; /* Padding extra abajo para última fila */
+    padding-bottom: 2rem;
   }
 
   .tech-item {
-    padding: 1rem;
-    margin-bottom: 1rem; /* Espacio extra para tooltip */
+    padding: 1.2rem;
+    margin-bottom: 0;
   }
 
   .tech-item img {
@@ -1225,15 +1225,15 @@ footer p {
   }
 
   .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5rem 0.8rem; /* Grid de 2 columnas con MUCHO espacio vertical */
+    grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
+    gap: 3rem;
     padding: 1rem;
     padding-bottom: 3rem;
   }
 
   .tech-item {
-    padding: 0.8rem;
-    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    margin-bottom: 0;
   }
 
   .tech-item img,
@@ -1365,8 +1365,8 @@ footer p {
   }
 
   .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+    grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
+    gap: 2.5rem;
   }
 
   .btn-submit {
@@ -2325,6 +2325,15 @@ body.light-mode .cv-overlay {
   transform: translateY(0);
 }
 
+/* Animaciones más rápidas en móvil */
+@media (max-width: 768px) {
+  .scroll-reveal {
+    transform: translateY(30px); /* Menos desplazamiento */
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
 /* Desde la izquierda - Elegante */
 .scroll-slide-left {
   opacity: 0;
@@ -2435,6 +2444,59 @@ body.light-mode .cv-overlay {
   opacity: 1;
   filter: blur(0px);
   transform: scale(1);
+}
+
+/* Optimización de todas las animaciones para móvil */
+@media (max-width: 768px) {
+  .scroll-slide-left,
+  .scroll-slide-right {
+    transform: translateX(0) translateY(20px); /* Solo movimiento vertical en móvil */
+    transition: opacity 0.5s ease-out,
+                transform 0.5s ease-out;
+  }
+
+  .scroll-diagonal-left,
+  .scroll-diagonal-right {
+    transform: translateY(20px); /* Solo vertical, sin rotación */
+    transition: opacity 0.5s ease-out,
+                transform 0.5s ease-out;
+  }
+
+  .scroll-rotate-up {
+    transform: translateY(20px) rotate(0deg); /* Sin rotación en móvil */
+    transition: opacity 0.6s ease-out,
+                transform 0.6s ease-out;
+  }
+
+  .scroll-scale {
+    transform: scale(0.95) translateY(10px);
+    transition: opacity 0.5s ease-out,
+                transform 0.5s ease-out;
+  }
+
+  .scroll-blur {
+    filter: blur(5px); /* Menos blur en móvil */
+    transition: opacity 0.6s ease-out,
+                filter 0.6s ease-out,
+                transform 0.6s ease-out;
+  }
+
+  .scroll-fade-in {
+    transition: opacity 0.5s ease-out;
+  }
+
+  /* Todas las animaciones reveladas en móvil */
+  .scroll-slide-left.revealed,
+  .scroll-slide-right.revealed,
+  .scroll-diagonal-left.revealed,
+  .scroll-diagonal-right.revealed,
+  .scroll-rotate-up.revealed {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  .scroll-scale.revealed {
+    transform: scale(1) translateY(0);
+  }
 }
 
 /* Banner de cookies */

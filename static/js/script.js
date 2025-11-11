@@ -472,20 +472,22 @@ function initializeScrollAnimations() {
         return; // No aplicar animaciones si el usuario prefiere movimiento reducido
     }
 
-    // Observador de intersección ultra suave y completamente bidireccional
+    // Detectar si estamos en móvil
+    const isMobile = window.innerWidth <= 768;
+
+    // Configuración adaptativa según el dispositivo
     const observerOptions = {
         root: null,
-        rootMargin: '-80px 0px -80px 0px', // Más margen para activación temprana
-        threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.25] // Múltiples puntos para suavidad máxima
+        rootMargin: isMobile ? '-20px 0px -20px 0px' : '-80px 0px -80px 0px', // Menos agresivo en móvil
+        threshold: isMobile ? [0, 0.1, 0.2] : [0, 0.05, 0.1, 0.15, 0.2, 0.25] // Menos thresholds en móvil
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // COMPLETAMENTE BIDIRECCIONAL: Añadir/remover clase según visibilidad
+            // Animaciones bidireccionales tanto en móvil como en desktop
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
             } else {
-                // Remover clase cuando sale del viewport EN CUALQUIER DIRECCIÓN
                 entry.target.classList.remove('revealed');
             }
         });
@@ -515,7 +517,7 @@ function initializeScrollAnimations() {
         // Ciclo de 4 efectos diferentes
         const effectIndex = index % 4;
         card.classList.add(slideEffects[effectIndex]);
-        card.style.transitionDelay = `${index * 0.1}s`;
+        card.style.transitionDelay = isMobile ? `${index * 0.05}s` : `${index * 0.1}s`;
         observer.observe(card);
     });
 
@@ -528,7 +530,7 @@ function initializeScrollAnimations() {
         } else {
             card.classList.add('scroll-blur');
         }
-        card.style.transitionDelay = `${index * 0.15}s`;
+        card.style.transitionDelay = isMobile ? `${index * 0.08}s` : `${index * 0.15}s`;
         observer.observe(card);
     });
 
@@ -536,7 +538,7 @@ function initializeScrollAnimations() {
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach((item, index) => {
         item.classList.add('scroll-fade-in');
-        item.style.transitionDelay = `${index * 0.02}s`;
+        item.style.transitionDelay = isMobile ? `${index * 0.01}s` : `${index * 0.02}s`;
         observer.observe(item);
     });
 
@@ -549,7 +551,7 @@ function initializeScrollAnimations() {
         } else {
             item.classList.add('scroll-slide-left');
         }
-        item.style.transitionDelay = `${index * 0.15}s`;
+        item.style.transitionDelay = isMobile ? `${index * 0.08}s` : `${index * 0.15}s`;
         observer.observe(item);
     });
 
@@ -557,7 +559,7 @@ function initializeScrollAnimations() {
     const sectionHeaders = document.querySelectorAll('section h2');
     sectionHeaders.forEach((header, index) => {
         header.classList.add('scroll-rotate-up');
-        header.style.transitionDelay = '0.2s';
+        header.style.transitionDelay = isMobile ? '0.1s' : '0.2s';
         observer.observe(header);
     });
 
@@ -565,7 +567,7 @@ function initializeScrollAnimations() {
     const artItems = document.querySelectorAll('.art-item');
     artItems.forEach((item, index) => {
         item.classList.add('scroll-scale');
-        item.style.transitionDelay = `${index * 0.1}s`;
+        item.style.transitionDelay = isMobile ? `${index * 0.05}s` : `${index * 0.1}s`;
         observer.observe(item);
     });
 
@@ -573,7 +575,7 @@ function initializeScrollAnimations() {
     const socialLinks = document.querySelectorAll('.social-link');
     socialLinks.forEach((link, index) => {
         link.classList.add('scroll-scale');
-        link.style.transitionDelay = `${index * 0.1}s`;
+        link.style.transitionDelay = isMobile ? `${index * 0.05}s` : `${index * 0.1}s`;
         observer.observe(link);
     });
 
