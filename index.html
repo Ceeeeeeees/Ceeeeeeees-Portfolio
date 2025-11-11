@@ -4,11 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Cesar Saucedo">
-    <meta name="description" content="Portfolio personal de Cesar Saucedo - Desarrollador Web">
-    <meta name="keywords" content="Cesar Saucedo, portfolio, desarrollador web, proyectos, contacto">
+    <meta name="description" content="Portfolio de César Saucedo - Desarrollador Web especializado en Machine Learning, NLP y Ciberseguridad. Trainee TI en Sura México con experiencia en Java, Python, TensorFlow y más.">
+    <meta name="keywords" content="Cesar Saucedo, portfolio, desarrollador web, machine learning, NLP, ciberseguridad, Python, Java, TensorFlow, proyectos">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ceeeeeeees - Desarrollo Web</title>
+    <title>César Saucedo - Desarrollador Web | ML & Ciberseguridad</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ceeeeeeees.github.io/">
+    <meta property="og:title" content="César Saucedo - Desarrollador Web | ML & Ciberseguridad">
+    <meta property="og:description" content="Portfolio de César Saucedo - Desarrollador Web especializado en Machine Learning, NLP y Ciberseguridad. Trainee TI en Sura México.">
+    <meta property="og:image" content="https://ceeeeeeees.github.io/static/img/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ceeeeeeees.github.io/">
+    <meta name="twitter:title" content="César Saucedo - Desarrollador Web | ML & Ciberseguridad">
+    <meta name="twitter:description" content="Portfolio de César Saucedo - Desarrollador Web especializado en Machine Learning, NLP y Ciberseguridad.">
+    <meta name="twitter:image" content="https://ceeeeeeees.github.io/static/img/og-image.png">
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <link rel="canonical" href="https://ceeeeeeees.github.io/">
 
     <!-- Favicons optimizados -->
     <link rel="icon" type="image/svg+xml" href="./static/img/favicon.svg">
@@ -40,8 +59,11 @@
 </head>
 
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-md navbar-dark" role="navigation" aria-label="Navegación principal">
             <div class="container-fluid">
                 <a class="navbar-brand" href="">
                     Ceeeeeeees
@@ -62,6 +84,9 @@
                             <a class="nav-link" href="#Educacion">Educación</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#Experiencia">Experiencia</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#Intereses">Intereses</a>
                         </li>
                         <li class="nav-item">
@@ -70,17 +95,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#Contacto">Contacto</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn-cv" href="#" id="downloadCV" aria-label="Descargar CV">
+                                <i class="fas fa-download"></i> CV
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section id="SobreMi">
-            <canvas id="matrixCanvas"></canvas>
+    <main id="main-content" role="main">
+        <section id="SobreMi" aria-labelledby="sobre-mi-heading">
+            <canvas id="matrixCanvas" aria-hidden="true"></canvas>
             <div class="content-overlay">
-                <h1>Hola, soy César :D</h1>
+                <h1 id="sobre-mi-heading">Hola, soy César :D</h1>
                 <p class="mt-3">
                     <span class="terminal-text">Desarrollador web y entusiasta por la tecnología.</span>
                 </p>
@@ -97,13 +127,13 @@
             </div>
         </section>
 
-        <section id="TechStack">
+        <section id="TechStack" aria-labelledby="tech-stack-heading">
             <div class="container">
-                <h2 class="text-center mb-5">Stack Tecnológico</h2>
-                <div class="tech-grid">
+                <h2 id="tech-stack-heading" class="text-center mb-5">Stack Tecnológico</h2>
+                <div class="tech-grid" role="list" aria-label="Tecnologías que domino">
                     <!-- Lenguajes de Programación -->
-                    <div class="tech-item" data-tooltip="Python">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">
+                    <div class="tech-item" data-tooltip="Python" role="listitem" tabindex="0" aria-label="Python">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" aria-hidden="true">
                     </div>
                     <div class="tech-item" data-tooltip="Java">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java">
@@ -289,6 +319,36 @@
             </div>
         </section>
 
+        <section id="Experiencia">
+            <div class="container">
+                <h2 class="text-center mb-5">Experiencia Profesional</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="education-item">
+                            <h3>Trainee TI</h3>
+                            <p class="company">Sura México</p>
+                            <p class="year">Abril 2025 - Presente</p>
+                            <p class="mb-2"><strong>Tareas:</strong></p>
+                            <ul class="experience-list">
+                                <li>Obtuve una perspectiva integral del liderazgo tecnológico mediante la rotación en la Dirección Ejecutiva de TI y Operaciones.</li>
+                                <li>Me familiaricé con el ciclo completo de la entrega de valor de TI, identificando el proceso de captura de necesidades de negocio, el proceso de ingeniería de software, pruebas y calidad, así como el control y despliegue a los distintos ambientes.</li>
+                            </ul>
+                        </div>
+                        <div class="education-item">
+                            <h3>Servicio Social</h3>
+                            <p class="company">Banco de México</p>
+                            <p class="year">Julio 2024 - Enero 2025</p>
+                            <p class="mb-2"><strong>Tareas:</strong></p>
+                            <ul class="experience-list">
+                                <li>Apoyé en un proyecto desarrollado en Java que realiza el procesamiento de exportación e importación de bases de datos a formatos de archivos legibles.</li>
+                                <li>Realicé pruebas, corregí errores y brindé soporte para asegurar el correcto funcionamiento del sistema ETL.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="Intereses">
             <div class="container">
                 <h2>Intereses</h2>
@@ -368,7 +428,7 @@
                                 <span class="project-tag">PubMed</span>
                             </div>
                             <div class="project-links mt-3">
-                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Practicas/Practica_2" class="github-link" target="_blank">
+                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Practicas/Practica_2" class="github-link" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-github"></i> Ver código
                                 </a>
                             </div>
@@ -386,7 +446,7 @@
                                 <span class="project-tag">NLP</span>
                             </div>
                             <div class="project-links mt-3">
-                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Proyecto" class="github-link" target="_blank">
+                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Proyecto" class="github-link" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-github"></i> Ver código
                                 </a>
                             </div>
@@ -404,7 +464,7 @@
                                 <span class="project-tag">NLP</span>
                             </div>
                             <div class="project-links mt-3">
-                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Practicas/Practica_4" class="github-link" target="_blank">
+                                <a href="https://github.com/Ceeeeeeees/Procesamiento-Lenguaje-Natural-7CM2/tree/main/Practicas/Practica_4" class="github-link" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-github"></i> Ver código
                                 </a>
                             </div>
@@ -422,7 +482,7 @@
                             </div>
                             <div class="project-links mt-3">
                                 <a href="https://github.com/Ceeeeeeees/Compiladores" class="github-link"
-                                    target="_blank">
+                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-github"></i> Ver código
                                 </a>
                             </div>
@@ -440,7 +500,7 @@
                             </div>
                             <div class="project-links mt-3">
                                 <a href="https://github.com/Ceeeeeeees/Inteligencia_Artificial/tree/main/Primer%20Parcial/Proyecto"
-                                    class="github-link" target="_blank">
+                                    class="github-link" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-github"></i> Ver código
                                 </a>
                             </div>
@@ -458,7 +518,7 @@
                             </div>
                             <div class="project-links mt-3">
                                 <a href="https://github.com/Ceeeeeeees/Machine-Learning/tree/main/Practica-clasificadores"
-                                    class="github-link" target="_blank">
+                                    class="github-link" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-github"></i> Ver código
                                 </a>
                             </div>
@@ -474,23 +534,27 @@
                 <p>¿Tienes un proyecto interesante o simplemente quieres conversar sobre música, arte o código?
                     Escríbeme.</p>
 
-                <form class="contact-form mt-4" action="https://formspree.io/f/idk.zero0day@gmail.com" method="POST">
+                <!-- Formspree: Regístrate en https://formspree.io y reemplaza YOUR_FORM_ID con tu ID de formulario -->
+                <form class="contact-form mt-4" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                        <label for="nombre" class="visually-hidden">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                        <label for="email" class="visually-hidden">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                        <textarea name="mensaje" class="form-control" rows="5" placeholder="Mensaje"
+                        <label for="mensaje" class="visually-hidden">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="Mensaje"
                             required></textarea>
                     </div>
                     <button type="submit" class="btn-submit">Enviar mensaje</button>
                 </form>
 
                 <div class="social-links">
-                    <a href="https://github.com/Ceeeeeeees" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/ces-saucedo" class="social-link"><i
+                    <a href="https://github.com/Ceeeeeeees" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub de César Saucedo"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/ces-saucedo" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de César Saucedo"><i
                             class="fab fa-linkedin"></i></a>
                 </div>
             </div>

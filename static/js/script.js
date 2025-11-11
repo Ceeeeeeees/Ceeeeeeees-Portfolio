@@ -4,15 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
     }
-    
+
     // Toggle para modo blanco y negro
     initializeColorModeToggle();
-    
+
     // Efecto typing para terminal-text (corrigiendo el bug)
     initializeTypingEffect();
 
     // Matrix effect
     initializeMatrixEffect();
+
+    // Funcionalidad de descarga de CV
+    initializeDownloadCV();
 });
 
 function initializeColorModeToggle() {
@@ -228,4 +231,66 @@ function initializeMatrixEffect() {
 
     // Start animation
     draw();
+}
+
+function initializeDownloadCV() {
+    const downloadButton = document.getElementById('downloadCV');
+    if (!downloadButton) {
+        console.error('No se encontró el botón de descarga de CV');
+        return;
+    }
+
+    downloadButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Ruta al archivo CV (debe estar en la carpeta static)
+        const cvPath = './static/CV_Cesar_Saucedo.pdf';
+
+        // Intentar descargar el archivo
+        fetch(cvPath, { method: 'HEAD' })
+            .then(response => {
+                if (response.ok) {
+                    // El archivo existe, iniciar descarga
+                    const link = document.createElement('a');
+                    link.href = cvPath;
+                    link.download = 'CV_Cesar_Saucedo.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    // El archivo no existe, mostrar mensaje
+                    showCVNotification();
+                }
+            })
+            .catch(() => {
+                // Error al verificar el archivo, mostrar mensaje
+                showCVNotification();
+            });
+    });
+}
+
+function showCVNotification() {
+    // Crear notificación temporal
+    const notification = document.createElement('div');
+    notification.className = 'cv-notification';
+    notification.innerHTML = `
+        <div class="cv-notification-content">
+            <i class="fas fa-info-circle"></i>
+            <p>CV en construcción. Por favor, contacta conmigo para más información.</p>
+        </div>
+    `;
+    document.body.appendChild(notification);
+
+    // Mostrar notificación
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+
+    // Ocultar y eliminar después de 4 segundos
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 4000);
 }
