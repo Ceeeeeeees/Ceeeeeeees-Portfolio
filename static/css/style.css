@@ -422,7 +422,7 @@ section::after {
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(80px, 100%), 1fr));
-  gap: 2rem;
+  gap: 3.5rem 2rem; /* Mayor gap vertical para tooltips */
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
@@ -479,63 +479,102 @@ section::after {
   stroke: var(--accent-color);
 }
 
+/* Assembly SVG - colores por defecto (modo oscuro) */
+.assembly-fill {
+  fill: #00ff8c;
+}
+
+.assembly-stroke {
+  stroke: #00ff8c;
+}
+
 /* Tooltip para los nombres de tecnologías */
 .tech-item::before {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: -35px;
+  bottom: -40px;
   left: 50%;
   transform: translateX(-50%) scale(0.8);
-  background-color: rgba(0, 255, 140, 0.9);
+  background-color: rgba(0, 255, 140, 0.95);
   color: var(--main-bg-color);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.3s ease;
-  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.tech-item:hover::before {
+.tech-item:hover::before,
+.tech-item:focus::before {
   opacity: 1;
   transform: translateX(-50%) scale(1);
+  bottom: -45px;
 }
 
 /* Responsive para tech grid */
 @media (max-width: 768px) {
   .tech-grid {
     grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 1.5rem;
+    gap: 4rem 1.5rem; /* Gap vertical muy grande para evitar sobreposición */
     padding: 1rem;
+    padding-bottom: 3rem; /* Padding extra abajo para última fila */
   }
 
   .tech-item {
     padding: 1rem;
+    margin-bottom: 1rem; /* Espacio extra para tooltip */
   }
 
   .tech-item img {
     max-width: 50px;
     max-height: 50px;
   }
+
+  .tech-item::before {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    bottom: -50px; /* Más abajo para evitar sobreposición */
+  }
+
+  .tech-item:hover::before,
+  .tech-item:focus::before {
+    bottom: -55px;
+  }
 }
 
 @media (max-width: 480px) {
   .tech-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 4.5rem 1rem; /* Gap vertical MUY grande para tooltips */
+    padding-bottom: 3rem; /* Padding extra abajo */
   }
 
   .tech-item {
     padding: 0.8rem;
+    margin-bottom: 1.5rem; /* Espacio extra */
   }
 
-  .tech-item img {
+  .tech-item img,
+  .tech-item svg {
     max-width: 40px;
     max-height: 40px;
+  }
+
+  .tech-item::before {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.7rem;
+    bottom: -50px; /* Tooltip más abajo */
+  }
+
+  .tech-item:hover::before,
+  .tech-item:focus::before {
+    bottom: -55px;
   }
 }
 
@@ -628,13 +667,16 @@ section::after {
 
 .projects-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: 2rem;
   width: 100%;
   box-sizing: border-box;
+  justify-items: center;
 }
 
 .project-card {
+  width: 100%;
+  max-width: 450px;
   background-color: rgba(18, 18, 18, 0.8);
   border: 1px solid var(--dark-accent);
   border-radius: 5px;
@@ -735,15 +777,18 @@ section::after {
 
 .interests-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: 2rem;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
+  justify-items: center;
 }
 
 .interest-card {
+  width: 100%;
+  max-width: 450px;
   background-color: rgba(18, 18, 18, 0.8);
   border: 1px solid var(--dark-accent);
   border-radius: 5px;
@@ -997,13 +1042,18 @@ footer p {
 
   .tech-grid {
     grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 1.5rem;
+    gap: 3.5rem 1.5rem; /* Mayor gap vertical para tooltips */
   }
 
   .projects-container,
   .interests-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
     gap: 1.5rem;
+  }
+
+  .project-card,
+  .interest-card {
+    max-width: 100%;
   }
 }
 
@@ -1040,6 +1090,11 @@ footer p {
   .interests-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .project-card,
+  .interest-card {
+    max-width: 100%;
   }
 
   .navbar-collapse {
@@ -1170,19 +1225,32 @@ footer p {
   }
 
   .tech-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem 0.8rem; /* Grid de 2 columnas con MUCHO espacio vertical */
     padding: 1rem;
+    padding-bottom: 3rem;
   }
 
   .tech-item {
     padding: 0.8rem;
+    margin-bottom: 1.5rem;
   }
 
   .tech-item img,
   .tech-item svg {
     max-width: 45px;
     max-height: 45px;
+  }
+
+  .tech-item::before {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    bottom: -50px;
+  }
+
+  .tech-item:hover::before,
+  .tech-item:focus::before {
+    bottom: -55px;
   }
 
   .education-item {
@@ -1605,6 +1673,22 @@ body.light-mode .tech-item:hover {
   transform: translateY(-10px) scale(1.05);
 }
 
+/* Tooltip en modo claro */
+body.light-mode .tech-item::before {
+  background-color: var(--light-accent-color);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 166, 81, 0.3);
+}
+
+/* Assembly SVG en modo claro */
+body.light-mode .assembly-fill {
+  fill: var(--light-accent-color);
+}
+
+body.light-mode .assembly-stroke {
+  stroke: var(--light-accent-color);
+}
+
 /* Tarjetas de intereses y proyectos */
 body.light-mode .interest-card,
 body.light-mode .project-card {
@@ -1877,6 +1961,22 @@ body.light-mode.monochrome-mode .tech-item:hover {
   box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25),
               0 2px 8px rgba(37, 99, 235, 0.15);
   background-color: rgba(37, 99, 235, 0.03);
+}
+
+/* Tooltip en modo claro monocromo - AZUL */
+body.light-mode.monochrome-mode .tech-item::before {
+  background-color: var(--alt-accent-color);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+/* Assembly SVG en modo claro monocromo - AZUL */
+body.light-mode.monochrome-mode .assembly-fill {
+  fill: var(--alt-accent-color);
+}
+
+body.light-mode.monochrome-mode .assembly-stroke {
+  stroke: var(--alt-accent-color);
 }
 
 body.light-mode.monochrome-mode .interest-card:hover,
