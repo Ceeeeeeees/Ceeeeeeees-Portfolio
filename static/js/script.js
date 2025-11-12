@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animaciones al hacer scroll
     initializeScrollAnimations();
 
-    // Banner de cookies
-    initializeCookieBanner();
+    // Banner de cookies - DESHABILITADO
+    // initializeCookieBanner();
 
     // Mejorar animación del menú hamburguesa
     initializeHamburgerAnimation();
@@ -608,6 +608,7 @@ function initializeScrollAnimations() {
     }
 }
 
+/* FUNCIONALIDAD DE COOKIES DESHABILITADA
 function initializeCookieBanner() {
     const cookieBanner = document.getElementById('cookieBanner');
     const acceptButton = document.getElementById('acceptCookies');
@@ -644,7 +645,9 @@ function initializeCookieBanner() {
         disableGoogleAnalytics();
     });
 }
+*/
 
+/* FUNCIONES DE GOOGLE ANALYTICS DESHABILITADAS
 function enableGoogleAnalytics() {
     // Habilitar Google Analytics solo en producción
     var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
@@ -684,6 +687,7 @@ function disableGoogleAnalytics() {
         });
     }
 }
+*/
 
 function initializeHamburgerAnimation() {
     // Asegurar que el botón hamburguesa tenga la clase "collapsed" inicialmente
