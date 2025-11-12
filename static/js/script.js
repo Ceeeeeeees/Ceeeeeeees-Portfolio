@@ -646,31 +646,43 @@ function initializeCookieBanner() {
 }
 
 function enableGoogleAnalytics() {
-    // Habilitar Google Analytics
+    // Habilitar Google Analytics solo en producción
+    var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
+
     if (typeof gtag === 'function') {
         gtag('consent', 'update', {
             'analytics_storage': 'granted',
             'ad_storage': 'granted'
         });
-        console.log('Google Analytics habilitado');
+
+        if (!isLocalhost) {
+            console.log('Google Analytics habilitado');
+        }
     }
 }
 
 function disableGoogleAnalytics() {
     // Deshabilitar Google Analytics
+    var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
+
     if (typeof gtag === 'function') {
         gtag('consent', 'update', {
             'analytics_storage': 'denied'
         });
-        console.log('Google Analytics deshabilitado');
+
+        if (!isLocalhost) {
+            console.log('Google Analytics deshabilitado');
+        }
     }
 
-    // Eliminar cookies de Google Analytics si existen
-    document.cookie.split(";").forEach(function(c) {
-        if (c.trim().startsWith('_ga')) {
-            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-        }
-    });
+    // Eliminar cookies de Google Analytics si existen (solo en producción)
+    if (!isLocalhost) {
+        document.cookie.split(";").forEach(function(c) {
+            if (c.trim().startsWith('_ga')) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            }
+        });
+    }
 }
 
 function initializeHamburgerAnimation() {

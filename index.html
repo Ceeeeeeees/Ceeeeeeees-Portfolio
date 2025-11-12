@@ -15,10 +15,15 @@
         });
 
         gtag('js', new Date());
+
+        // Configuración adaptativa según el entorno
+        var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
+
         gtag('config', 'G-8PR9GRNYM3', {
             'anonymize_ip': true,
-            'cookie_flags': 'SameSite=None;Secure',
-            'cookie_domain': 'auto'
+            'cookie_flags': isLocalhost ? 'SameSite=Lax' : 'SameSite=None;Secure',
+            'cookie_domain': 'auto',
+            'send_page_view': !isLocalhost // No enviar page views en localhost
         });
     </script>
 
@@ -26,7 +31,7 @@
     <meta name="author" content="Cesar Saucedo">
     <meta name="description" content="Portfolio de César Saucedo - Desarrollador Web especializado en Machine Learning, NLP y Ciberseguridad. Trainee TI en Sura México con experiencia en Java, Python, TensorFlow y más.">
     <meta name="keywords" content="Cesar Saucedo, portfolio, desarrollador web, machine learning, NLP, ciberseguridad, Python, Java, TensorFlow, proyectos">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>César Saucedo - Desarrollador Web | ML & Ciberseguridad</title>
 
@@ -589,7 +594,7 @@
     <!-- Banner de cookies para GDPR -->
     <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
         <div class="cookie-content">
-            <p>Este sitio utiliza Google Analytics para analizar el tráfico. Al continuar navegando, aceptas el uso de cookies. <a href="#" class="cookie-link">Más información</a></p>
+            <p>Este sitio utiliza Google Analytics para analizar el tráfico. Al continuar navegando, aceptas el uso de cookies. <a href="https://policies.google.com/technologies/partner-sites?hl=es" class="cookie-link" target="_blank" rel="noopener noreferrer">Más información</a></p>
             <div class="cookie-buttons">
                 <button class="cookie-btn cookie-accept" id="acceptCookies" aria-label="Aceptar cookies">Aceptar</button>
                 <button class="cookie-btn cookie-decline" id="declineCookies" aria-label="Rechazar cookies">Rechazar</button>
