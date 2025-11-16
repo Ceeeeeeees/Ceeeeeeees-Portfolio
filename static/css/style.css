@@ -286,6 +286,7 @@ body::before {
   opacity: 0;
   margin-right: 4px;
   transition: all 0.3s ease;
+  color: var(--accent-color);
 }
 
 .nav-link::after {
@@ -293,12 +294,12 @@ body::before {
   opacity: 0;
   margin-left: 4px;
   transition: all 0.3s ease;
+  color: var(--accent-color);
 }
 
 .nav-link:hover::before,
 .nav-link:hover::after {
   opacity: 1;
-  color: var(--accent-color);
 }
 
 /* Botón CV en navegación */
@@ -952,10 +953,9 @@ section::after {
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   text-decoration: none;
   display: inline-block;
-  z-index: 1;
 }
 
 .btn-submit:visited,
@@ -975,6 +975,7 @@ section::after {
   background: linear-gradient(90deg, transparent, rgba(0, 255, 140, 0.3), transparent);
   animation: btn-shine 3s infinite;
   z-index: -1;
+  pointer-events: none;
 }
 
 @keyframes btn-shine {
@@ -1440,10 +1441,17 @@ footer p {
   /* Cambiar corchetes a llaves en móvil */
   .nav-link::before {
     content: "{";
+    opacity: 0;
   }
 
   .nav-link::after {
     content: "}";
+    opacity: 0;
+  }
+
+  .nav-link:hover::before,
+  .nav-link:hover::after {
+    opacity: 1;
   }
 
   .projects-container,
