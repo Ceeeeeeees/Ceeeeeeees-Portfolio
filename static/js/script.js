@@ -650,6 +650,9 @@ function initializeFormValidation() {
         const value = nombreInput.value.trim();
         const errorElement = document.getElementById('nombre-error');
 
+        // Regex: Solo letras (con acentos), espacios, mínimo 3 caracteres
+        const nombreRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]{3,50}$/;
+
         if (value === '') {
             nombreInput.classList.add('is-invalid');
             nombreInput.classList.remove('is-valid');
@@ -660,10 +663,20 @@ function initializeFormValidation() {
             nombreInput.classList.remove('is-valid');
             errorElement.textContent = 'El nombre debe tener al menos 3 caracteres';
             return false;
-        } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) {
+        } else if (value.length > 50) {
             nombreInput.classList.add('is-invalid');
             nombreInput.classList.remove('is-valid');
-            errorElement.textContent = 'El nombre solo puede contener letras';
+            errorElement.textContent = 'El nombre no puede exceder 50 caracteres';
+            return false;
+        } else if (!nombreRegex.test(value)) {
+            nombreInput.classList.add('is-invalid');
+            nombreInput.classList.remove('is-valid');
+            errorElement.textContent = 'El nombre solo puede contener letras y espacios';
+            return false;
+        } else if (/\s{2,}/.test(value)) {
+            nombreInput.classList.add('is-invalid');
+            nombreInput.classList.remove('is-valid');
+            errorElement.textContent = 'El nombre no puede tener espacios consecutivos';
             return false;
         } else {
             nombreInput.classList.remove('is-invalid');
@@ -677,7 +690,9 @@ function initializeFormValidation() {
     function validateEmail() {
         const value = emailInput.value.trim();
         const errorElement = document.getElementById('email-error');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Regex más estricto para email: usuario@dominio.extension
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (value === '') {
             emailInput.classList.add('is-invalid');
@@ -687,7 +702,12 @@ function initializeFormValidation() {
         } else if (!emailRegex.test(value)) {
             emailInput.classList.add('is-invalid');
             emailInput.classList.remove('is-valid');
-            errorElement.textContent = 'Por favor, ingresa un email válido';
+            errorElement.textContent = 'Por favor, ingresa un email válido (ejemplo@dominio.com)';
+            return false;
+        } else if (value.length > 100) {
+            emailInput.classList.add('is-invalid');
+            emailInput.classList.remove('is-valid');
+            errorElement.textContent = 'El email no puede exceder 100 caracteres';
             return false;
         } else {
             emailInput.classList.remove('is-invalid');
@@ -720,6 +740,9 @@ function initializeFormValidation() {
         const value = mensajeTextarea.value.trim();
         const errorElement = document.getElementById('mensaje-error');
 
+        // Regex: Permitir letras, números, espacios y puntuación básica
+        const mensajeRegex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s.,;:¿?¡!\-()'"@#$%&+=\n]+$/;
+
         if (value === '') {
             mensajeTextarea.classList.add('is-invalid');
             mensajeTextarea.classList.remove('is-valid');
@@ -734,6 +757,11 @@ function initializeFormValidation() {
             mensajeTextarea.classList.add('is-invalid');
             mensajeTextarea.classList.remove('is-valid');
             errorElement.textContent = 'El mensaje no puede exceder 500 caracteres';
+            return false;
+        } else if (!mensajeRegex.test(value)) {
+            mensajeTextarea.classList.add('is-invalid');
+            mensajeTextarea.classList.remove('is-valid');
+            errorElement.textContent = 'El mensaje contiene caracteres no permitidos';
             return false;
         } else {
             mensajeTextarea.classList.remove('is-invalid');
@@ -774,7 +802,7 @@ function initializeFormValidation() {
     mensajeTextarea.addEventListener('blur', validateMensaje);
 
     // Validar formulario completo al enviar
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
 
         const isNombreValid = validateNombre();
@@ -787,54 +815,57 @@ function initializeFormValidation() {
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
 
-            // Enviar formulario usando FormData
-            const formData = new FormData(form);
+            try {
+                // Enviar formulario usando FormData
+                const formData = new FormData(form);
 
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                console.log('Respuesta de Formspree:', response.status);
-                if (response.ok) {
-                    return response.json().catch(() => ({ok: true}));
-                }
-                return response.json().then(data => {
-                    throw new Error(data.error || 'Error al enviar el formulario');
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
-            })
-            .then(data => {
-                console.log('Formulario enviado exitosamente:', data);
-                // Mostrar mensaje de éxito
-                formSuccess.style.display = 'block';
-                form.reset();
 
-                // Remover clases de validación
-                nombreInput.classList.remove('is-valid', 'is-invalid');
-                emailInput.classList.remove('is-valid', 'is-invalid');
-                motivoSelect.classList.remove('is-valid', 'is-invalid');
-                mensajeTextarea.classList.remove('is-valid', 'is-invalid');
+                let data;
+                if (response.ok) {
+                    try {
+                        data = await response.json();
+                    } catch {
+                        data = {ok: true};
+                    }
 
-                // Resetear contador
-                charCount.textContent = '0';
+                    // Mostrar mensaje de éxito
+                    formSuccess.style.display = 'block';
+                    form.reset();
 
-                // Ocultar mensaje de éxito después de 5 segundos
-                setTimeout(() => {
-                    formSuccess.style.display = 'none';
-                }, 5000);
-            })
-            .catch(error => {
-                console.error('Error al enviar formulario:', error);
+                    // Remover clases de validación
+                    nombreInput.classList.remove('is-valid', 'is-invalid');
+                    emailInput.classList.remove('is-valid', 'is-invalid');
+                    motivoSelect.classList.remove('is-valid', 'is-invalid');
+                    mensajeTextarea.classList.remove('is-valid', 'is-invalid');
+
+                    // Resetear contador
+                    charCount.textContent = '0';
+
+                    // Scroll hacia el mensaje de éxito
+                    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Ocultar mensaje de éxito después de 12 segundos
+                    setTimeout(() => {
+                        formSuccess.style.display = 'none';
+                    }, 12000);
+                } else {
+                    data = await response.json();
+                    throw new Error(data.error || 'Error al enviar el formulario');
+                }
+            } catch (error) {
                 alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
-            })
-            .finally(() => {
+            } finally {
                 // Rehabilitar botón
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = 'Enviar mensaje';
-            });
+            }
         } else {
             // Scroll al primer campo con error
             const firstInvalid = form.querySelector('.is-invalid');

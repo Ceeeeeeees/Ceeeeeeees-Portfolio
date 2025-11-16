@@ -77,13 +77,23 @@ iframe {
 
 /* Asegurar que todos los containers no causen overflow */
 .container,
-.container-fluid,
-section,
+.container-fluid {
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+section {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 .certifications-container,
 .projects-container,
 .interests-container {
+  width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
   box-sizing: border-box;
 }
 
@@ -1049,9 +1059,11 @@ section::after {
 /* Estilos para Certificaciones */
 .certifications-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 
@@ -1080,6 +1092,9 @@ section::after {
   position: relative;
   overflow: hidden;
   text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .certification-card::before {
@@ -1219,6 +1234,7 @@ section::after {
 .cert-link:hover {
   background: rgba(0, 255, 140, 0.1);
   transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 255, 140, 0.3);
 }
 
 .cert-link i {
@@ -3192,6 +3208,7 @@ body.light-mode .cert-link {
 
 body.light-mode .cert-link:hover {
   background: rgba(0, 166, 81, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 166, 81, 0.25);
 }
 
 body.light-mode .form-control {
@@ -3299,6 +3316,7 @@ body.light-mode.monochrome-mode .cert-link {
 
 body.light-mode.monochrome-mode .cert-link:hover {
   background: rgba(37, 99, 235, 0.1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 body.light-mode.monochrome-mode .form-control:focus {
