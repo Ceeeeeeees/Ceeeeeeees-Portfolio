@@ -1229,12 +1229,21 @@ section::after {
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
+  background-color: rgba(0, 255, 140, 0.05);
+}
+
+.cert-link:visited,
+.cert-link:active,
+.cert-link:focus {
+  color: var(--accent-color);
+  text-decoration: none;
 }
 
 .cert-link:hover {
   background: rgba(0, 255, 140, 0.1);
   transform: translateX(5px);
   box-shadow: 0 4px 12px rgba(0, 255, 140, 0.3);
+  color: var(--accent-color);
 }
 
 .cert-link i {
@@ -1293,6 +1302,68 @@ footer p {
 /* Media Queries para Responsive */
 
 /* Tablets grandes (hasta 992px) */
+/* Pantallas medianas (hasta 1400px) - Para resoluciones como 1366x768 */
+@media (max-width: 1400px) {
+  .navbar {
+    padding: 0.8rem 0;
+  }
+
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .navbar-nav {
+    gap: 0;
+    flex-wrap: nowrap;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
+    margin: 0 0.15rem;
+    padding: 0.4rem 0.3rem !important;
+  }
+
+  .nav-link::before,
+  .nav-link::after {
+    display: none;
+  }
+
+  .btn-cv {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.4rem !important;
+    margin-left: 0.15rem;
+  }
+
+  .btn-cv i {
+    font-size: 0.65rem;
+  }
+
+  .nav-theme-toggle {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.85rem;
+    margin-left: 0.15rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .navbar-brand::after {
+    right: -12px;
+    font-size: 1rem;
+  }
+
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 @media (max-width: 992px) {
   section {
     padding: 4rem 2rem;
@@ -1303,13 +1374,14 @@ footer p {
   }
 
   .nav-link {
-    font-size: 0.8rem;
-    margin: 0 0.3rem;
+    font-size: 0.75rem;
+    margin: 0 0.25rem;
+    padding: 0.4rem 0.3rem;
   }
 
   .btn-cv {
-    font-size: 0.8rem;
-    padding: 0.25rem 0.6rem !important;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem !important;
   }
 
   .tech-grid {
