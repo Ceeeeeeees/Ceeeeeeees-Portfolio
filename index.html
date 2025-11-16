@@ -112,6 +112,9 @@
                             <a class="nav-link" href="#Proyectos">Proyectos</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#Certificaciones">Certificaciones</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#Contacto">Contacto</a>
                         </li>
                         <li class="nav-item">
@@ -433,6 +436,62 @@
             </div>
         </section>
 
+        <section id="Certificaciones">
+            <div class="container">
+                <h2 class="scroll-rotate-up" style="transition-delay: 0.2s;">Cursos y certificaciones</h2>
+                <p class="text-center mb-4">Aprendizaje continuo en tecnologías y desarrollo de habilidades</p>
+
+                <div class="certifications-container">
+                    <div class="certification-card">
+                        <div class="cert-logo-wrapper">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Platzi</h3>
+                        <p>Cursos en análisis de datos, ML y habilidades blandas.</p>
+                        <div class="cert-badges">
+                            <span class="cert-badge">Análisis de datos</span>
+                            <span class="cert-badge">Power BI</span>
+                            <span class="cert-badge">ML</span>
+                        </div>
+                        <a href="https://platzi.com/p/ces.saucedo/" class="cert-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> Ver perfil
+                        </a>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-logo-wrapper">
+                            <img src="https://www.edx.org/images/logos/edx-logo-elm.svg" alt="edX Logo" class="cert-logo">
+                        </div>
+                        <h3>edX</h3>
+                        <p>Cursos en Java</p>
+                        <div class="cert-badges">
+                            <span class="cert-badge">Computer Science</span>
+                            <span class="cert-badge">Data Science</span>
+                            <span class="cert-badge">AI/ML</span>
+                        </div>
+                        <a href="https://profile.edx.org/u/cesarsmore" class="cert-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> Ver perfil
+                        </a>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-logo-wrapper">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Google Skills</h3>
+                        <p>Cursos en Cloud (GCP) y habilidades en la nube.</p>
+                        <div class="cert-badges">
+                            <span class="cert-badge">Cloud</span>
+                            <span class="cert-badge">Digital Skills</span>
+                        </div>
+                        <a href="https://www.skills.google/public_profiles/943fe52f-7a33-4155-a8cd-ed1ab8ffa107" class="cert-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> Ver perfil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="Proyectos">
             <div class="container">
                 <h2>Proyectos</h2>
@@ -555,21 +614,39 @@
                 <p>¿Tienes un proyecto interesante o simplemente quieres conversar sobre música, arte o código?
                     Escríbeme.</p>
 
-                <form class="contact-form mt-4" action="https://formspree.io/f/mnnlqdry" method="POST">
+                <form class="contact-form mt-4" id="contactForm" action="https://formspree.io/f/mnnlqdry" method="POST" novalidate>
                     <div class="form-group">
-                        <label for="nombre" class="visually-hidden">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required minlength="3">
+                        <span class="form-error" id="nombre-error"></span>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="visually-hidden">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                        <span class="form-error" id="email-error"></span>
                     </div>
                     <div class="form-group">
-                        <label for="mensaje" class="visually-hidden">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="Mensaje"
-                            required></textarea>
+                        <label for="motivo">Motivo de contacto</label>
+                        <select id="motivo" name="motivo" class="form-control" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="trabajo">Oportunidad laboral</option>
+                            <option value="colaboracion">Colaboración en proyecto</option>
+                            <option value="consultoria">Consultoría técnica</option>
+                            <option value="networking">Networking</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                        <span class="form-error" id="motivo-error"></span>
                     </div>
-                    <button type="submit" class="btn-submit">Enviar mensaje</button>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="Cuéntame más sobre tu mensaje..." required minlength="20" maxlength="500"></textarea>
+                        <span class="form-error" id="mensaje-error"></span>
+                        <span class="form-char-count"><span id="char-count">0</span>/500</span>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submitBtn">Enviar mensaje</button>
+                    <div class="form-success" id="form-success" style="display: none;">
+                        <i class="fas fa-check-circle"></i> ¡Mensaje enviado exitosamente! Te responderé pronto.
+                    </div>
                 </form>
 
                 <div class="social-links">

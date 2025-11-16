@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mejorar animación del menú hamburguesa
     initializeHamburgerAnimation();
+
+    // Validación en tiempo real del formulario de contacto
+    initializeFormValidation();
 });
 
 function detectFontsLoaded() {
@@ -627,5 +630,212 @@ function initializeHamburgerAnimation() {
 
     navbarCollapse.addEventListener('hide.bs.collapse', function() {
         toggleButton.classList.add('collapsed');
+    });
+}
+
+function initializeFormValidation() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    const nombreInput = document.getElementById('nombre');
+    const emailInput = document.getElementById('email');
+    const motivoSelect = document.getElementById('motivo');
+    const mensajeTextarea = document.getElementById('mensaje');
+    const submitBtn = document.getElementById('submitBtn');
+    const formSuccess = document.getElementById('form-success');
+    const charCount = document.getElementById('char-count');
+
+    // Validar nombre
+    function validateNombre() {
+        const value = nombreInput.value.trim();
+        const errorElement = document.getElementById('nombre-error');
+
+        if (value === '') {
+            nombreInput.classList.add('is-invalid');
+            nombreInput.classList.remove('is-valid');
+            errorElement.textContent = 'Por favor, ingresa tu nombre';
+            return false;
+        } else if (value.length < 3) {
+            nombreInput.classList.add('is-invalid');
+            nombreInput.classList.remove('is-valid');
+            errorElement.textContent = 'El nombre debe tener al menos 3 caracteres';
+            return false;
+        } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) {
+            nombreInput.classList.add('is-invalid');
+            nombreInput.classList.remove('is-valid');
+            errorElement.textContent = 'El nombre solo puede contener letras';
+            return false;
+        } else {
+            nombreInput.classList.remove('is-invalid');
+            nombreInput.classList.add('is-valid');
+            errorElement.textContent = '';
+            return true;
+        }
+    }
+
+    // Validar email
+    function validateEmail() {
+        const value = emailInput.value.trim();
+        const errorElement = document.getElementById('email-error');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (value === '') {
+            emailInput.classList.add('is-invalid');
+            emailInput.classList.remove('is-valid');
+            errorElement.textContent = 'Por favor, ingresa tu email';
+            return false;
+        } else if (!emailRegex.test(value)) {
+            emailInput.classList.add('is-invalid');
+            emailInput.classList.remove('is-valid');
+            errorElement.textContent = 'Por favor, ingresa un email válido';
+            return false;
+        } else {
+            emailInput.classList.remove('is-invalid');
+            emailInput.classList.add('is-valid');
+            errorElement.textContent = '';
+            return true;
+        }
+    }
+
+    // Validar motivo
+    function validateMotivo() {
+        const value = motivoSelect.value;
+        const errorElement = document.getElementById('motivo-error');
+
+        if (value === '') {
+            motivoSelect.classList.add('is-invalid');
+            motivoSelect.classList.remove('is-valid');
+            errorElement.textContent = 'Por favor, selecciona un motivo de contacto';
+            return false;
+        } else {
+            motivoSelect.classList.remove('is-invalid');
+            motivoSelect.classList.add('is-valid');
+            errorElement.textContent = '';
+            return true;
+        }
+    }
+
+    // Validar mensaje
+    function validateMensaje() {
+        const value = mensajeTextarea.value.trim();
+        const errorElement = document.getElementById('mensaje-error');
+
+        if (value === '') {
+            mensajeTextarea.classList.add('is-invalid');
+            mensajeTextarea.classList.remove('is-valid');
+            errorElement.textContent = 'Por favor, escribe tu mensaje';
+            return false;
+        } else if (value.length < 20) {
+            mensajeTextarea.classList.add('is-invalid');
+            mensajeTextarea.classList.remove('is-valid');
+            errorElement.textContent = `El mensaje debe tener al menos 20 caracteres (${value.length}/20)`;
+            return false;
+        } else if (value.length > 500) {
+            mensajeTextarea.classList.add('is-invalid');
+            mensajeTextarea.classList.remove('is-valid');
+            errorElement.textContent = 'El mensaje no puede exceder 500 caracteres';
+            return false;
+        } else {
+            mensajeTextarea.classList.remove('is-invalid');
+            mensajeTextarea.classList.add('is-valid');
+            errorElement.textContent = '';
+            return true;
+        }
+    }
+
+    // Actualizar contador de caracteres
+    function updateCharCount() {
+        const count = mensajeTextarea.value.length;
+        charCount.textContent = count;
+
+        if (count > 500) {
+            charCount.style.color = 'var(--error-color, #ff4444)';
+        } else if (count > 450) {
+            charCount.style.color = 'var(--warning-color, #ffaa00)';
+        } else {
+            charCount.style.color = '';
+        }
+    }
+
+    // Event listeners para validación en tiempo real
+    nombreInput.addEventListener('input', validateNombre);
+    nombreInput.addEventListener('blur', validateNombre);
+
+    emailInput.addEventListener('input', validateEmail);
+    emailInput.addEventListener('blur', validateEmail);
+
+    motivoSelect.addEventListener('change', validateMotivo);
+    motivoSelect.addEventListener('blur', validateMotivo);
+
+    mensajeTextarea.addEventListener('input', function() {
+        validateMensaje();
+        updateCharCount();
+    });
+    mensajeTextarea.addEventListener('blur', validateMensaje);
+
+    // Validar formulario completo al enviar
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const isNombreValid = validateNombre();
+        const isEmailValid = validateEmail();
+        const isMotivoValid = validateMotivo();
+        const isMensajeValid = validateMensaje();
+
+        if (isNombreValid && isEmailValid && isMotivoValid && isMensajeValid) {
+            // Deshabilitar botón de envío
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+            // Enviar formulario usando FormData
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Mostrar mensaje de éxito
+                    formSuccess.style.display = 'block';
+                    form.reset();
+
+                    // Remover clases de validación
+                    nombreInput.classList.remove('is-valid', 'is-invalid');
+                    emailInput.classList.remove('is-valid', 'is-invalid');
+                    motivoSelect.classList.remove('is-valid', 'is-invalid');
+                    mensajeTextarea.classList.remove('is-valid', 'is-invalid');
+
+                    // Resetear contador
+                    charCount.textContent = '0';
+
+                    // Ocultar mensaje de éxito después de 5 segundos
+                    setTimeout(() => {
+                        formSuccess.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error('Error en el envío');
+                }
+            })
+            .catch(error => {
+                alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Rehabilitar botón
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Enviar mensaje';
+            });
+        } else {
+            // Scroll al primer campo con error
+            const firstInvalid = form.querySelector('.is-invalid');
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstInvalid.focus();
+            }
+        }
     });
 }

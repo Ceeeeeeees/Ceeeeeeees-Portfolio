@@ -772,7 +772,8 @@ section::after {
   position: relative;
 }
 
-#Intereses h2 {
+#Intereses h2,
+#Certificaciones h2 {
   font-family: var(--font-special);
   color: var(--accent-color);
   margin-bottom: 3rem;
@@ -974,6 +975,239 @@ section::after {
 .social-link:hover {
   color: var(--accent-color);
   transform: translateY(-5px);
+}
+
+/* Estilos para validación del formulario */
+.form-error {
+  display: block;
+  color: #ff4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  text-align: left;
+  font-family: var(--font-mono);
+}
+
+.form-control.is-invalid {
+  border-color: #ff4444;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+}
+
+.form-control.is-valid {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(0, 255, 140, 0.3);
+}
+
+.form-char-count {
+  display: block;
+  text-align: right;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  opacity: 0.7;
+}
+
+.form-success {
+  background-color: rgba(0, 255, 140, 0.1);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  text-align: center;
+}
+
+.form-success i {
+  margin-right: 0.5rem;
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Estilos para Certificaciones */
+.certifications-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+
+.fa-graduation-cap::before {
+  content: "\f19d"; /* Código Unicode del icono */
+}
+
+.fa-google::before {
+  content: "\f1a0"; /* Código Unicode del icono */
+}
+
+.fa-certificate::before {
+  content: "\f0a3";
+}
+
+.fa-external-link-alt::before {
+  content: "\f35d";
+}
+
+.certification-card {
+  background: rgba(18, 18, 18, 0.6);
+  border: 1px solid rgba(0, 255, 140, 0.2);
+  padding: 2rem;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.certification-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 255, 140, 0.05), rgba(0, 255, 140, 0));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.certification-card:hover::before {
+  opacity: 1;
+}
+
+.certification-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0, 255, 140, 0.2);
+}
+
+.cert-logo-wrapper {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 255, 140, 0.05);
+  overflow: hidden;
+}
+
+.cert-logo-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--accent-color), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+}
+
+.cert-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(0, 255, 140, 0.3));
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.cert-logo-wrapper i {
+  font-size: 4rem;
+  color: var(--accent-color);
+  filter: drop-shadow(0 0 20px rgba(0, 255, 140, 0.3));
+  transition: all 0.4s ease;
+}
+
+.certification-card:hover .cert-logo {
+  filter: drop-shadow(0 0 30px rgba(0, 255, 140, 0.6));
+  transform: scale(1.1);
+}
+
+.certification-card:hover .cert-logo-wrapper i {
+  filter: drop-shadow(0 0 30px rgba(0, 255, 140, 0.6));
+  transform: scale(1.1);
+}
+
+.certification-card h3 {
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.certification-card p {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+.cert-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cert-badge {
+  background: rgba(0, 255, 140, 0.1);
+  color: var(--accent-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  border: 1px solid rgba(0, 255, 140, 0.3);
+  transition: all 0.3s ease;
+}
+
+.certification-card:hover .cert-badge {
+  background: rgba(0, 255, 140, 0.2);
+  border-color: var(--accent-color);
+}
+
+.cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.cert-link:hover {
+  background: rgba(0, 255, 140, 0.1);
+  transform: translateX(5px);
+}
+
+.cert-link i {
+  transition: transform 0.3s ease;
+}
+
+.cert-link:hover i {
+  transform: translateX(3px);
 }
 
 /* Footer */
@@ -2778,4 +3012,209 @@ body.light-mode .cookie-btn {
   .cv-notification-text {
     font-size: 0.8rem;
   }
+}
+
+/* Estilos para modo claro - Certificaciones y Formulario */
+body.light-mode .certification-card {
+  background: #ffffff;
+  border: 2px solid var(--light-border-color);
+  box-shadow: 0 2px 8px var(--light-shadow);
+}
+
+body.light-mode .certification-card:hover {
+  border-color: var(--light-accent-color);
+  box-shadow: 0 8px 24px rgba(0, 166, 81, 0.2);
+}
+
+body.light-mode .certification-card::before {
+  background: linear-gradient(135deg, rgba(0, 166, 81, 0.05), rgba(0, 166, 81, 0));
+}
+
+body.light-mode .cert-logo-wrapper {
+  background: rgba(0, 166, 81, 0.05);
+}
+
+body.light-mode .cert-logo-wrapper::before {
+  background: linear-gradient(135deg, var(--light-accent-color), transparent);
+}
+
+body.light-mode .cert-logo {
+  filter: drop-shadow(0 0 20px rgba(0, 166, 81, 0.3));
+}
+
+body.light-mode .cert-logo-wrapper i {
+  color: var(--light-accent-color);
+  filter: drop-shadow(0 0 20px rgba(0, 166, 81, 0.3));
+}
+
+body.light-mode .certification-card:hover .cert-logo {
+  filter: drop-shadow(0 0 30px rgba(0, 166, 81, 0.5));
+}
+
+body.light-mode .certification-card:hover .cert-logo-wrapper i {
+  filter: drop-shadow(0 0 30px rgba(0, 166, 81, 0.5));
+}
+
+body.light-mode .certification-card h3 {
+  color: var(--light-accent-color);
+}
+
+body.light-mode .certification-card p {
+  color: var(--light-text-secondary);
+}
+
+body.light-mode .cert-badge {
+  background: rgba(0, 166, 81, 0.1);
+  color: var(--light-accent-color);
+  border-color: rgba(0, 166, 81, 0.3);
+}
+
+body.light-mode .certification-card:hover .cert-badge {
+  background: rgba(0, 166, 81, 0.15);
+  border-color: var(--light-accent-color);
+}
+
+body.light-mode .cert-link {
+  color: var(--light-accent-color);
+  border-color: var(--light-accent-color);
+}
+
+body.light-mode .cert-link:hover {
+  background: rgba(0, 166, 81, 0.1);
+}
+
+body.light-mode .form-control {
+  background-color: #ffffff;
+  border: 2px solid var(--light-border-color);
+  color: var(--light-text-color);
+}
+
+body.light-mode .form-control:focus {
+  border-color: var(--light-accent-color);
+  box-shadow: 0 0 10px rgba(0, 166, 81, 0.2);
+}
+
+body.light-mode .form-control.is-invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.2);
+}
+
+body.light-mode .form-control.is-valid {
+  border-color: var(--light-accent-color);
+  box-shadow: 0 0 10px rgba(0, 166, 81, 0.2);
+}
+
+body.light-mode .form-success {
+  background-color: rgba(0, 166, 81, 0.1);
+  border-color: var(--light-accent-color);
+  color: var(--light-accent-color);
+}
+
+body.light-mode .form-char-count {
+  color: var(--light-text-secondary);
+}
+
+body.light-mode .btn-submit {
+  color: var(--light-accent-color);
+  border-color: var(--light-accent-color);
+}
+
+body.light-mode .btn-submit::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 166, 81, 0.2), transparent);
+}
+
+body.light-mode .btn-submit:hover {
+  background-color: rgba(0, 166, 81, 0.1);
+}
+
+/* Modo monocromo claro (azul) - Certificaciones y Formulario */
+body.light-mode.monochrome-mode .certification-card {
+  border-color: var(--alt-border-color);
+}
+
+body.light-mode.monochrome-mode .certification-card:hover {
+  border-color: var(--alt-accent-color);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+}
+
+body.light-mode.monochrome-mode .certification-card::before {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(37, 99, 235, 0));
+}
+
+body.light-mode.monochrome-mode .cert-logo-wrapper {
+  background: rgba(37, 99, 235, 0.05);
+}
+
+body.light-mode.monochrome-mode .cert-logo-wrapper::before {
+  background: linear-gradient(135deg, var(--alt-accent-color), transparent);
+}
+
+body.light-mode.monochrome-mode .cert-logo {
+  filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.3));
+}
+
+body.light-mode.monochrome-mode .cert-logo-wrapper i {
+  color: var(--alt-accent-color);
+  filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.3));
+}
+
+body.light-mode.monochrome-mode .certification-card:hover .cert-logo {
+  filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.5));
+}
+
+body.light-mode.monochrome-mode .certification-card:hover .cert-logo-wrapper i {
+  filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.5));
+}
+
+body.light-mode.monochrome-mode .certification-card h3 {
+  color: var(--alt-accent-color);
+}
+
+body.light-mode.monochrome-mode .cert-badge {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--alt-accent-color);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+body.light-mode.monochrome-mode .certification-card:hover .cert-badge {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: var(--alt-accent-color);
+}
+
+body.light-mode.monochrome-mode .cert-link {
+  color: var(--alt-accent-color);
+  border-color: var(--alt-accent-color);
+}
+
+body.light-mode.monochrome-mode .cert-link:hover {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+body.light-mode.monochrome-mode .form-control:focus {
+  border-color: var(--alt-accent-color);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
+}
+
+body.light-mode.monochrome-mode .form-control.is-valid {
+  border-color: var(--alt-accent-color);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
+}
+
+body.light-mode.monochrome-mode .form-success {
+  background-color: rgba(37, 99, 235, 0.1);
+  border-color: var(--alt-accent-color);
+  color: var(--alt-accent-color);
+}
+
+body.light-mode.monochrome-mode .btn-submit {
+  color: var(--alt-accent-color);
+  border-color: var(--alt-accent-color);
+}
+
+body.light-mode.monochrome-mode .btn-submit::before {
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.2), transparent);
+}
+
+body.light-mode.monochrome-mode .btn-submit:hover {
+  background-color: rgba(37, 99, 235, 0.1);
 }
