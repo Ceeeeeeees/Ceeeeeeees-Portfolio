@@ -2042,8 +2042,8 @@ body.light-mode .terminal-text {
 }
 
 body.light-mode .btn-submit {
-  color: #ffffff;
-  background-color: var(--light-accent-color);
+  color: var(--light-accent-color);
+  background-color: transparent;
   border-color: var(--light-accent-color);
   font-weight: 600;
   box-shadow: 0 2px 4px var(--light-shadow),
@@ -2053,8 +2053,13 @@ body.light-mode .btn-submit {
 body.light-mode .btn-submit:visited,
 body.light-mode .btn-submit:active,
 body.light-mode .btn-submit:focus {
-  color: #ffffff;
+  color: var(--light-accent-color);
   text-decoration: none;
+}
+
+body.light-mode .btn-submit:disabled {
+  color: var(--light-accent-color);
+  opacity: 0.6;
 }
 
 body.light-mode .btn-submit:hover {
@@ -2414,11 +2419,27 @@ body.light-mode.monochrome-mode #SobreMi h1 {
 }
 
 body.light-mode.monochrome-mode .btn-submit {
+  color: var(--alt-accent-color);
+  border-color: var(--alt-accent-color);
+  background-color: transparent;
   box-shadow: 0 2px 4px rgba(37, 99, 235, 0.15),
               0 1px 2px rgba(37, 99, 235, 0.2);
 }
 
+body.light-mode.monochrome-mode .btn-submit:visited,
+body.light-mode.monochrome-mode .btn-submit:active,
+body.light-mode.monochrome-mode .btn-submit:focus {
+  color: var(--alt-accent-color);
+}
+
+body.light-mode.monochrome-mode .btn-submit:disabled {
+  color: var(--alt-accent-color);
+  opacity: 0.6;
+}
+
 body.light-mode.monochrome-mode .btn-submit:hover {
+  background-color: var(--alt-accent-hover);
+  color: #ffffff;
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35),
               0 2px 8px rgba(37, 99, 235, 0.2);
 }
