@@ -568,13 +568,15 @@ section::after {
   .tech-item::before {
     font-size: 0.75rem;
     padding: 0.4rem 0.8rem;
-    bottom: -50px; /* Más abajo para evitar sobreposición */
+    top: -50px; /* Mostrar arriba en móvil para evitar encimamiento */
+    bottom: auto;
     white-space: nowrap;
   }
 
   .tech-item:hover::before,
   .tech-item:focus::before {
-    bottom: -55px;
+    top: -55px;
+    bottom: auto;
   }
 }
 
@@ -602,13 +604,15 @@ section::after {
   .tech-item::before {
     font-size: 0.7rem;
     padding: 0.35rem 0.7rem;
-    bottom: -50px; /* Tooltip más abajo */
+    top: -50px; /* Mostrar arriba en móvil para evitar encimamiento */
+    bottom: auto;
     white-space: nowrap;
   }
 
   .tech-item:hover::before,
   .tech-item:focus::before {
-    bottom: -55px;
+    top: -55px;
+    bottom: auto;
   }
 }
 
@@ -1396,7 +1400,7 @@ footer p {
 
   .tech-grid {
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 3rem 1.5rem;
+    gap: 4rem 1.5rem; /* Aumentado gap vertical de 3rem a 4rem para evitar sobreposición */
   }
 
   .projects-container,
@@ -1650,7 +1654,7 @@ footer p {
 
   .tech-grid {
     grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 2rem;
+    gap: 3rem; /* Aumentado de 2rem a 3rem para evitar sobreposición de tooltips */
     padding: 1rem;
     padding-bottom: 3rem;
     max-width: 130px; /* Limitar ancho máximo en móviles pequeños */
@@ -1672,12 +1676,14 @@ footer p {
   .tech-item::before {
     font-size: 0.7rem;
     padding: 0.3rem 0.6rem;
-    bottom: -50px;
+    top: -50px; /* Mostrar arriba en móvil para evitar encimamiento */
+    bottom: auto;
   }
 
   .tech-item:hover::before,
   .tech-item:focus::before {
-    bottom: -55px;
+    top: -55px;
+    bottom: auto;
   }
 
   .education-item {
@@ -1831,7 +1837,7 @@ footer p {
 
   .tech-grid {
     grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 1.8rem;
+    gap: 2.5rem; /* Aumentado de 1.8rem a 2.5rem para evitar sobreposición de tooltips */
     max-width: 120px; /* Limitar ancho máximo en móviles muy pequeños */
     margin: 0 auto;
   }
