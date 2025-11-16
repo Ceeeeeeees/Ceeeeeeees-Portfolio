@@ -550,7 +550,7 @@ section::after {
 @media (max-width: 768px) {
   .tech-grid {
     grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 3rem 1.2rem;
+    gap: 4rem 1.2rem; /* Aumentado gap vertical de 3rem a 4rem */
     padding: 1rem;
     padding-bottom: 2rem;
   }
@@ -569,6 +569,7 @@ section::after {
     font-size: 0.75rem;
     padding: 0.4rem 0.8rem;
     bottom: -50px; /* Más abajo para evitar sobreposición */
+    white-space: nowrap;
   }
 
   .tech-item:hover::before,
@@ -580,7 +581,7 @@ section::after {
 @media (max-width: 480px) {
   .tech-grid {
     grid-template-columns: 1fr; /* Una sola columna - tecnología por tecnología */
-    gap: 2rem;
+    gap: 3rem; /* Aumentado de 2rem a 3rem para más espacio vertical */
     padding-bottom: 2rem;
     max-width: 140px; /* Limitar ancho máximo en móvil */
     margin: 0 auto;
@@ -602,6 +603,7 @@ section::after {
     font-size: 0.7rem;
     padding: 0.35rem 0.7rem;
     bottom: -50px; /* Tooltip más abajo */
+    white-space: nowrap;
   }
 
   .tech-item:hover::before,
