@@ -1,0 +1,654 @@
+/* ============================================
+   RESPONSIVE - Media Queries
+   ============================================ */
+
+/* Accesibilidad: Respetar preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  #matrixCanvas {
+    display: none !important;
+  }
+
+  .bob-constructor,
+  .cv-notification-title,
+  .cv-notification-tools {
+    animation: none !important;
+  }
+}
+
+/* Accesibilidad: Modo de alto contraste */
+@media (prefers-contrast: high) {
+  :root {
+    --accent-color: #00ff00;
+    --text-color: #ffffff;
+    --main-bg-color: #000000;
+  }
+
+  body.light-mode {
+    --text-color: #000000;
+    --main-bg-color: #ffffff;
+    --accent-color: #008000;
+  }
+
+  .nav-link,
+  .btn-cv,
+  .github-link,
+  .social-link {
+    border-width: 2px !important;
+  }
+}
+
+/* Animaciones suaves en móvil */
+@media (max-width: 768px) {
+  .scroll-reveal {
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-slide-left,
+  .scroll-slide-right {
+    transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+                transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-diagonal-left,
+  .scroll-diagonal-right,
+  .scroll-rotate-up {
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-scale {
+    transition: opacity 1.1s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 1.1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-blur {
+    filter: blur(5px);
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, filter, transform;
+  }
+
+  .scroll-fade-in {
+    transition: opacity 1.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: opacity;
+  }
+}
+
+/* Tablets grandes (hasta 992px) */
+@media (max-width: 992px) {
+  section {
+    padding: 4rem 2rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+    margin: 0 0.3rem;
+  }
+
+  .btn-cv {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem !important;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 3rem 1.5rem;
+  }
+
+  .projects-container,
+  .interests-container {
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card,
+  .interest-card {
+    max-width: 100%;
+  }
+}
+
+/* Tablets (hasta 768px) */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  section {
+    padding: 3rem 1.5rem;
+  }
+
+  section::before,
+  section::after {
+    font-size: 0.65rem;
+  }
+
+  #SobreMi h1 {
+    font-size: 2.5rem;
+  }
+
+  #SobreMi p {
+    font-size: 1rem;
+  }
+
+  #SobreMi .content-overlay {
+    padding: 1.5rem;
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  .projects-container,
+  .interests-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-card,
+  .interest-card {
+    max-width: 100%;
+  }
+
+  .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    align-items: center !important;
+  }
+
+  .nav-link {
+    margin: 0.5rem 0;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  .btn-cv {
+    display: block;
+    width: fit-content;
+    margin: 0.5rem auto !important;
+  }
+
+  .nav-theme-toggle {
+    margin: 0.5rem auto;
+    display: block;
+    width: fit-content;
+  }
+
+  .art-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+  }
+
+  .art-item {
+    height: 80px;
+  }
+
+  .terminal-text {
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .project-card img {
+    height: 150px;
+  }
+
+  .education-item {
+    padding-left: 18px;
+  }
+
+  .education-item::before {
+    width: 12px;
+    height: 12px;
+    left: -6.5px;
+  }
+
+  .contact-form {
+    padding: 0 1rem;
+  }
+
+  /* Tech Stack responsive */
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 3rem 1.2rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .tech-item {
+    padding: 1rem;
+    margin-bottom: 0;
+  }
+
+  .tech-item img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .tech-item::before {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    bottom: -50px;
+  }
+
+  .tech-item:hover::before,
+  .tech-item:focus::before {
+    bottom: -55px;
+  }
+
+  /* Cookie banner responsive */
+  .cookie-banner {
+    padding: 1rem;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 20px));
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .cookie-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .cookie-content p {
+    width: 100%;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .cookie-buttons {
+    width: 100%;
+    justify-content: stretch;
+    gap: 0.75rem;
+  }
+
+  .cookie-btn {
+    flex: 1;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    min-height: 44px;
+    white-space: normal;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .cv-notification {
+    max-width: 90%;
+    padding: 1.5rem 2rem;
+  }
+
+  .bob-constructor {
+    font-size: 4rem;
+  }
+
+  .cv-notification-title {
+    font-size: 1.2rem;
+  }
+
+  .cv-notification-text {
+    font-size: 0.9rem;
+  }
+
+  .cv-notification-tools {
+    font-size: 1.5rem;
+  }
+
+  /* Modo claro en móvil */
+  body.light-mode .navbar-collapse {
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--light-border-color);
+  }
+
+  body.light-mode .nav-theme-toggle {
+    border-color: var(--light-accent-color);
+    color: var(--light-accent-color);
+  }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  section {
+    padding: 2.5rem 1rem;
+  }
+
+  #SobreMi h1 {
+    font-size: 1.8rem;
+  }
+
+  #SobreMi p {
+    font-size: 0.95rem;
+  }
+
+  #SobreMi .content-overlay {
+    padding: 1rem;
+    margin: 0 0.5rem;
+    width: calc(100% - 1rem);
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .navbar-brand::after {
+    right: -10px;
+    font-size: 0.9rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .btn-cv {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .nav-theme-toggle {
+    padding: 0.4rem 0.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 2rem !important;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+    padding-bottom: 3rem;
+    max-width: 130px;
+    margin: 0 auto;
+  }
+
+  .tech-item {
+    padding: 0.7rem;
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  .tech-item img,
+  .tech-item svg {
+    max-width: 45px;
+    max-height: 45px;
+  }
+
+  .tech-item::before {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    bottom: -50px;
+  }
+
+  .tech-item:hover::before,
+  .tech-item:focus::before {
+    bottom: -55px;
+  }
+
+  .education-item {
+    padding-left: 15px;
+    margin-bottom: 1.5rem;
+  }
+
+  .education-item::before {
+    width: 10px;
+    height: 10px;
+    left: -5.5px;
+  }
+
+  .art-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .art-item {
+    height: 70px;
+  }
+
+  .interest-card,
+  .project-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .project-card img {
+    height: 130px;
+  }
+
+  .project-content {
+    padding: 1rem;
+  }
+
+  .project-tags {
+    gap: 0.4rem;
+  }
+
+  .project-tag {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .github-link {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .btn-submit {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .form-control {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .social-link {
+    font-size: 1.3rem;
+  }
+
+  .fixed-toggle {
+    width: 45px !important;
+    height: 45px !important;
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+
+  .fixed-toggle i {
+    font-size: 1.1rem !important;
+  }
+
+  footer p {
+    font-size: 0.85rem;
+  }
+
+  /* Cookie banner */
+  .cookie-banner {
+    padding: 0.9rem 0.8rem;
+    padding-bottom: calc(0.9rem + env(safe-area-inset-bottom, 25px));
+    max-width: 100vw;
+    max-height: 85vh;
+  }
+
+  .cookie-content {
+    gap: 0.8rem;
+  }
+
+  .cookie-content p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .cookie-buttons {
+    gap: 0.6rem;
+    flex-direction: column;
+  }
+
+  .cookie-btn {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 0.7rem 0.9rem;
+    min-height: 48px;
+    font-weight: 500;
+  }
+
+  .cv-notification {
+    max-width: 95%;
+    width: calc(100% - 2rem);
+    padding: 1.2rem 1rem;
+  }
+
+  .cv-notification-content {
+    gap: 1rem;
+  }
+
+  .bob-constructor {
+    font-size: 3rem;
+  }
+
+  .cv-notification-title {
+    font-size: 1rem;
+  }
+
+  .cv-notification-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .cv-notification-tools {
+    font-size: 1.2rem;
+  }
+}
+
+/* Móviles muy pequeños (hasta 360px) */
+@media (max-width: 360px) {
+  body {
+    font-size: 0.85rem;
+  }
+
+  section {
+    padding: 2rem 0.8rem;
+  }
+
+  #SobreMi h1 {
+    font-size: 1.5rem;
+  }
+
+  #SobreMi p {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    max-width: 120px;
+    margin: 0 auto;
+  }
+
+  .tech-item {
+    padding: 0.65rem;
+  }
+
+  .btn-submit {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .fixed-toggle {
+    width: 40px !important;
+    height: 40px !important;
+    bottom: 15px !important;
+    right: 15px !important;
+  }
+
+  .cookie-banner {
+    padding: 0.75rem 0.6rem;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 30px));
+    max-height: 80vh;
+  }
+
+  .cookie-content {
+    gap: 0.7rem;
+  }
+
+  .cookie-content p {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .cookie-btn {
+    font-size: 0.75rem;
+    padding: 0.65rem 0.7rem;
+    min-height: 48px;
+  }
+
+  .cv-notification {
+    width: calc(100% - 1rem);
+    padding: 1rem 0.8rem;
+  }
+
+  .bob-constructor {
+    font-size: 2.5rem;
+  }
+
+  .cv-notification-title {
+    font-size: 0.9rem;
+  }
+
+  .cv-notification-text {
+    font-size: 0.8rem;
+  }
+}

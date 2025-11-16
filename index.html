@@ -54,16 +54,25 @@
     <meta name="language" content="Spanish">
     <link rel="canonical" href="https://ceeeeeeees.github.io/">
 
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+
     <!-- Favicons optimizados -->
     <link rel="icon" type="image/svg+xml" href="./static/img/favicon.svg">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <link rel="apple-touch-icon" href="./static/img/favicon.svg">
 
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#00ff8c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="César Portfolio">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Mi CSS -->
-    <link rel="stylesheet" href="./static/css/style.css">
+    <!-- Mi CSS - Arquitectura Modular -->
+    <link rel="stylesheet" href="./static/css/main.css">
 
     <!-- Google Fonts - Carga diferida para evitar FOUT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,6 +119,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#Proyectos">Proyectos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Certificaciones">Certificaciones</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#Contacto">Contacto</a>
@@ -549,27 +561,102 @@
             </div>
         </section>
 
+        <section id="Certificaciones">
+            <div class="container">
+                <h2>Certificaciones y Cursos</h2>
+                <p class="text-center mb-4">Aprendizaje continuo en tecnologías y desarrollo de habilidades</p>
+
+                <div class="certifications-container">
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Platzi</h3>
+                        <p>Cursos de desarrollo web, programación y tecnologías emergentes</p>
+                        <div class="cert-badges">
+                            <span class="cert-badge">Web Development</span>
+                            <span class="cert-badge">JavaScript</span>
+                            <span class="cert-badge">Python</span>
+                        </div>
+                        <a href="https://platzi.com/p/ces.saucedo/" class="cert-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> Ver perfil
+                        </a>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3>edX</h3>
+                        <p>Cursos de universidades líderes en ciencia de la computación y tecnología</p>
+                        <div class="cert-badges">
+                            <span class="cert-badge">Computer Science</span>
+                            <span class="cert-badge">Data Science</span>
+                            <span class="cert-badge">AI/ML</span>
+                        </div>
+                        <a href="https://profile.edx.org/u/cesarsmore" class="cert-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> Ver perfil
+                        </a>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <h3>Google Skills</h3>
+                        <p>Certificaciones en tecnologías de Google y mejores prácticas</p>
+                        <div class="cert-badges">
+                            <span class="cert-badge">Cloud</span>
+                            <span class="cert-badge">Analytics</span>
+                            <span class="cert-badge">Digital Skills</span>
+                        </div>
+                        <a href="https://www.skills.google/public_profiles/943fe52f-7a33-4155-a8cd-ed1ab8ffa107" class="cert-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> Ver perfil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="Contacto">
             <div class="container">
                 <h2>Contacto</h2>
                 <p>¿Tienes un proyecto interesante o simplemente quieres conversar sobre música, arte o código?
                     Escríbeme.</p>
 
-                <form class="contact-form mt-4" action="https://formspree.io/f/mnnlqdry" method="POST">
+                <form class="contact-form mt-4" id="contactForm" action="https://formspree.io/f/mnnlqdry" method="POST" novalidate>
                     <div class="form-group">
-                        <label for="nombre" class="visually-hidden">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required minlength="3">
+                        <span class="form-error" id="nombre-error"></span>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="visually-hidden">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                        <span class="form-error" id="email-error"></span>
                     </div>
                     <div class="form-group">
-                        <label for="mensaje" class="visually-hidden">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="Mensaje"
-                            required></textarea>
+                        <label for="motivo">Motivo de contacto</label>
+                        <select id="motivo" name="motivo" class="form-control" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="trabajo">Oportunidad laboral</option>
+                            <option value="colaboracion">Colaboración en proyecto</option>
+                            <option value="consultoria">Consultoría técnica</option>
+                            <option value="networking">Networking</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                        <span class="form-error" id="motivo-error"></span>
                     </div>
-                    <button type="submit" class="btn-submit">Enviar mensaje</button>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="Cuéntame más sobre tu mensaje..." required minlength="20"></textarea>
+                        <span class="form-error" id="mensaje-error"></span>
+                        <span class="form-char-count"><span id="char-count">0</span>/500</span>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submitBtn">Enviar mensaje</button>
+                    <div class="form-success" id="form-success" style="display: none;">
+                        <i class="fas fa-check-circle"></i> ¡Mensaje enviado exitosamente! Te responderé pronto.
+                    </div>
                 </form>
 
                 <div class="social-links">
@@ -605,6 +692,24 @@
     <!-- Bootstrap & Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./static/js/script.js"></script>
+    <script src="./static/js/form-validation.js"></script>
+    <script src="./static/js/easter-eggs.js"></script>
+    <script src="./static/js/portfolio-tour.js"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('[PWA] Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('[PWA] Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>

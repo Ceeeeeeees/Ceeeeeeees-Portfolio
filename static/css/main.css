@@ -1,0 +1,23 @@
+/* ============================================
+   MAIN CSS - Portfolio de César Saucedo
+   Arquitectura CSS Modular
+   ============================================ */
+
+/* Variables y configuración base */
+@import url('./modules/variables.css');
+@import url('./modules/base.css');
+
+/* Layout y estructura */
+@import url('./modules/layout.css');
+
+/* Componentes reutilizables */
+@import url('./modules/components.css');
+
+/* Animaciones */
+@import url('./modules/animations.css');
+
+/* Temas (modo claro y monocromo) */
+@import url('./modules/themes.css');
+
+/* Responsive design */
+@import url('./modules/responsive.css');

@@ -1,0 +1,65 @@
+/* ============================================
+   VARIABLES CSS - Colores y Fuentes
+   ============================================ */
+
+:root {
+  /* Colores Modo Oscuro */
+  --main-bg-color: #0a0a0a;
+  --text-color: #e0e0e0;
+  --accent-color: #00ff8c;
+  --secondary-accent: #ff00ff;
+  --dark-accent: #121212;
+
+  /* Fuentes del sistema como fallback para evitar FOUT */
+  --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', Arial, sans-serif;
+  --font-special: 'Impact', 'Arial Black', 'Helvetica', sans-serif;
+
+  /* Colores para modo claro - Verde original */
+  --light-bg-color: #ffffff;
+  --light-bg-secondary: #f8f9fa;
+  --light-bg-tertiary: #e9ecef;
+  --light-text-color: #1a202c;
+  --light-text-secondary: #4a5568;
+  --light-text-muted: #718096;
+  --light-accent-color: #00a651;
+  --light-accent-hover: #008c44;
+  --light-accent-dark: #007236;
+  --light-secondary-accent: #6b1b8f;
+  --light-border-color: #cbd5e0;
+  --light-border-strong: #a0aec0;
+  --light-shadow: rgba(0, 0, 0, 0.08);
+  --light-shadow-medium: rgba(0, 0, 0, 0.12);
+  --light-shadow-strong: rgba(0, 0, 0, 0.16);
+
+  /* Colores para modo alternativo (monocromo en claro) */
+  --alt-bg-color: #f0f4f8;
+  --alt-bg-secondary: #e1e8ed;
+  --alt-bg-tertiary: #d3dce6;
+  --alt-text-color: #0f2847;
+  --alt-text-secondary: #2d4a6f;
+  --alt-text-muted: #5a6c7d;
+  --alt-accent-color: #2563eb;
+  --alt-accent-hover: #1d4ed8;
+  --alt-accent-dark: #1e40af;
+  --alt-secondary-accent: #7c3aed;
+  --alt-border-color: #a5b4c7;
+  --alt-border-strong: #7b8fa8;
+  --alt-shadow: rgba(37, 99, 235, 0.1);
+  --alt-shadow-medium: rgba(37, 99, 235, 0.15);
+  --alt-shadow-strong: rgba(37, 99, 235, 0.2);
+
+  /* Cyberpunk Edgerunners Colors */
+  --edgerunners-jet-black: #26303C;
+  --edgerunners-muted-teal: #A5C3A5;
+  --edgerunners-blue-slate: #506272;
+  --edgerunners-amethyst: #A589B9;
+  --edgerunners-mint: #63C9A4;
+}
+
+/* Cuando las fuentes de Google se cargan, actualizar las variables */
+html.fonts-loaded {
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-special: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
+}

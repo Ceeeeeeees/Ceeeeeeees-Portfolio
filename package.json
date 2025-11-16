@@ -1,0 +1,24 @@
+{
+  "name": "cesar-portfolio",
+  "version": "2.0.0",
+  "description": "Portfolio personal de César Saucedo - Desarrollador Web",
+  "main": "index.html",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug"
+  },
+  "keywords": [
+    "portfolio",
+    "developer",
+    "web",
+    "ml",
+    "cybersecurity"
+  ],
+  "author": "César Saucedo",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}

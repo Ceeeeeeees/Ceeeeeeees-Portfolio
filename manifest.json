@@ -1,0 +1,28 @@
+{
+  "name": "César Saucedo - Portfolio",
+  "short_name": "César Portfolio",
+  "description": "Portfolio de César Saucedo - Desarrollador Web especializado en Machine Learning, NLP y Ciberseguridad",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00ff8c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./static/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./static/img/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["portfolio", "developer", "technology"],
+  "lang": "es",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

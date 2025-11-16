@@ -1,0 +1,381 @@
+/* ============================================
+   LAYOUT - Navegación, Secciones, Footer
+   ============================================ */
+
+/* Barra de navegación */
+.navbar {
+  padding: 1rem 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--accent-color);
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Botón hamburguesa ultra moderno con animación */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-toggler:hover {
+  background-color: rgba(0, 255, 140, 0.1);
+  transform: scale(1.05);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(0, 255, 140, 0.2);
+  outline: none;
+}
+
+.navbar-toggler-icon {
+  background-image: none;
+  width: 26px;
+  height: 2.5px;
+  background-color: var(--accent-color);
+  display: block;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  transform-origin: center;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 2.5px;
+  background-color: var(--accent-color);
+  left: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  transform-origin: center;
+}
+
+.navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler-icon::after {
+  bottom: -8px;
+}
+
+/* Animación cuando el menú está abierto (transforma a X) */
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+  background-color: transparent;
+  transform: rotate(180deg);
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+.navbar-brand {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  font-size: 1.4rem;
+  position: relative;
+}
+
+.navbar-brand::after {
+  content: ">";
+  position: absolute;
+  right: -15px;
+  animation: blink 1s infinite;
+  color: var(--accent-color);
+}
+
+.nav-link {
+  color: var(--text-color) !important;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.nav-link:hover {
+  color: var(--accent-color) !important;
+  transform: translateY(-2px);
+}
+
+.nav-link::before {
+  content: "[";
+  opacity: 0;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: "]";
+  opacity: 0;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::before,
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+/* Estilos para el botón de toggle de tema en el nav */
+.nav-theme-toggle {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.nav-theme-toggle:hover {
+  background-color: var(--accent-color);
+  color: var(--main-bg-color);
+}
+
+.nav-theme-toggle i {
+  font-size: 0.9rem;
+}
+
+/* Botón del nav tampoco debe tener filtro */
+.nav-theme-toggle {
+  filter: none !important;
+}
+
+/* Estilos para el botón fijo en la esquina */
+.fixed-toggle {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  z-index: 9999 !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(0, 255, 140, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  background-color: rgba(10, 10, 10, 0.8) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid var(--accent-color) !important;
+  color: var(--accent-color) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  filter: none !important;
+}
+
+.fixed-toggle:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(0, 255, 140, 0.4) !important;
+  background-color: var(--accent-color) !important;
+  color: var(--main-bg-color) !important;
+}
+
+.fixed-toggle i {
+  font-size: 1.2rem !important;
+  pointer-events: none !important;
+}
+
+/* Secciones principales */
+section {
+  padding: 5rem 2rem;
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+section::before {
+  content: "<section>";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: rgba(0, 255, 140, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+section::after {
+  content: "</section>";
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: rgba(0, 255, 140, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* Ajustes para el efecto Matrix */
+#SobreMi {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #121212 0%, #080808 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+#SobreMi h1,
+#SobreMi p {
+  text-align: center;
+}
+
+#matrixCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: block;
+}
+
+#SobreMi .content-overlay {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+  background-color: rgba(10, 10, 10, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 140, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#SobreMi h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  text-shadow: 0 0 10px rgba(0, 255, 140, 0.7);
+  animation: glitch 5s infinite;
+}
+
+#SobreMi p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: var(--font-sans);
+}
+
+#SobreMi .mt-5 {
+  text-align: center;
+}
+
+.terminal-text {
+  font-family: var(--font-mono);
+  color: var(--text-color);
+  border-right: 2px solid var(--accent-color);
+  white-space: nowrap;
+  display: inline-block;
+  min-height: 1.5em;
+  animation: blink-caret 1s step-end infinite;
+}
+
+/* Sección Tech Stack */
+#TechStack {
+  background-color: #0d0d0d;
+  padding: 5rem 2rem;
+}
+
+#TechStack h2 {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  margin-bottom: 3rem;
+}
+
+/* Sección Educación */
+#Educacion {
+  background-color: #0c0c0c;
+}
+
+/* Sección Experiencia */
+#Experiencia {
+  background-color: #0b0b0b;
+}
+
+#Experiencia h2 {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  text-align: center;
+}
+
+/* Sección Proyectos */
+#Proyectos {
+  background-color: #090909;
+}
+
+#Proyectos h2 {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  margin-bottom: 3rem;
+}
+
+/* Estilos completos para la sección de intereses */
+#Intereses {
+  background-color: #0a0a0a;
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+#Intereses h2 {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  margin-bottom: 3rem;
+}
+
+/* Sección de Contacto */
+#Contacto {
+  background-color: #080808;
+}
+
+#Contacto h2 {
+  font-family: var(--font-special);
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+}
+
+#Contacto .social-links {
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background-color: #050505;
+  padding: 2rem;
+  border-top: 1px solid var(--dark-accent);
+}
+
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: #888;
+  text-align: center;
+}
