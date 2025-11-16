@@ -59,6 +59,11 @@ html {
 
 html, body {
   max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
 }
 
 /* Prevenir overflow de imágenes y elementos */
@@ -68,6 +73,18 @@ canvas,
 iframe {
   max-width: 100%;
   height: auto;
+}
+
+/* Asegurar que todos los containers no causen overflow */
+.container,
+.container-fluid,
+section,
+.certifications-container,
+.projects-container,
+.interests-container {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Skip link para accesibilidad */
@@ -927,6 +944,7 @@ section::after {
   overflow: hidden;
   text-decoration: none;
   display: inline-block;
+  z-index: 1;
 }
 
 .btn-submit:visited,
@@ -945,6 +963,7 @@ section::after {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(0, 255, 140, 0.3), transparent);
   animation: btn-shine 3s infinite;
+  z-index: -1;
 }
 
 @keyframes btn-shine {
@@ -1324,14 +1343,48 @@ footer p {
   }
 
   .projects-container,
-  .interests-container {
+  .interests-container,
+  .certifications-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   .project-card,
-  .interest-card {
+  .interest-card,
+  .certification-card {
     max-width: 100%;
+  }
+
+  .certification-card {
+    padding: 1.5rem;
+  }
+
+  .cert-logo-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .cert-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cert-logo-wrapper i {
+    font-size: 3rem;
+  }
+
+  .cert-badges {
+    gap: 0.4rem;
+  }
+
+  .cert-badge {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .cert-link {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
   }
 
   .navbar-collapse {
@@ -1402,6 +1455,26 @@ footer p {
 
   .contact-form {
     padding: 0 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+
+  .form-error {
+    font-size: 0.75rem;
+  }
+
+  .form-char-count {
+    font-size: 0.75rem;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 0.7rem 1.5rem;
   }
 }
 
@@ -1514,8 +1587,46 @@ footer p {
   }
 
   .interest-card,
-  .project-card {
+  .project-card,
+  .certification-card {
     margin-bottom: 1.5rem;
+  }
+
+  .certification-card {
+    padding: 1rem;
+  }
+
+  .cert-logo-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+
+  .cert-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cert-logo-wrapper i {
+    font-size: 2.5rem;
+  }
+
+  .certification-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .certification-card p {
+    font-size: 0.85rem;
+  }
+
+  .cert-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .cert-link {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
   }
 
   .project-card img {

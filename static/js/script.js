@@ -798,31 +798,37 @@ function initializeFormValidation() {
                 }
             })
             .then(response => {
+                console.log('Respuesta de Formspree:', response.status);
                 if (response.ok) {
-                    // Mostrar mensaje de éxito
-                    formSuccess.style.display = 'block';
-                    form.reset();
-
-                    // Remover clases de validación
-                    nombreInput.classList.remove('is-valid', 'is-invalid');
-                    emailInput.classList.remove('is-valid', 'is-invalid');
-                    motivoSelect.classList.remove('is-valid', 'is-invalid');
-                    mensajeTextarea.classList.remove('is-valid', 'is-invalid');
-
-                    // Resetear contador
-                    charCount.textContent = '0';
-
-                    // Ocultar mensaje de éxito después de 5 segundos
-                    setTimeout(() => {
-                        formSuccess.style.display = 'none';
-                    }, 5000);
-                } else {
-                    throw new Error('Error en el envío');
+                    return response.json().catch(() => ({ok: true}));
                 }
+                return response.json().then(data => {
+                    throw new Error(data.error || 'Error al enviar el formulario');
+                });
+            })
+            .then(data => {
+                console.log('Formulario enviado exitosamente:', data);
+                // Mostrar mensaje de éxito
+                formSuccess.style.display = 'block';
+                form.reset();
+
+                // Remover clases de validación
+                nombreInput.classList.remove('is-valid', 'is-invalid');
+                emailInput.classList.remove('is-valid', 'is-invalid');
+                motivoSelect.classList.remove('is-valid', 'is-invalid');
+                mensajeTextarea.classList.remove('is-valid', 'is-invalid');
+
+                // Resetear contador
+                charCount.textContent = '0';
+
+                // Ocultar mensaje de éxito después de 5 segundos
+                setTimeout(() => {
+                    formSuccess.style.display = 'none';
+                }, 5000);
             })
             .catch(error => {
+                console.error('Error al enviar formulario:', error);
                 alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
-                console.error('Error:', error);
             })
             .finally(() => {
                 // Rehabilitar botón
