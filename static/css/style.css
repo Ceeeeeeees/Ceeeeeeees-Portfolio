@@ -284,20 +284,21 @@ body::before {
 .nav-link::before {
   content: "[";
   opacity: 0;
-  margin-right: 5px;
+  margin-right: 4px;
   transition: all 0.3s ease;
 }
 
 .nav-link::after {
   content: "]";
   opacity: 0;
-  margin-left: 5px;
+  margin-left: 4px;
   transition: all 0.3s ease;
 }
 
 .nav-link:hover::before,
 .nav-link:hover::after {
   opacity: 1;
+  color: var(--accent-color);
 }
 
 /* Botón CV en navegación */
@@ -1305,17 +1306,19 @@ footer p {
 /* Pantallas medianas (hasta 1400px) - Para resoluciones como 1366x768 */
 @media (max-width: 1400px) {
   .navbar {
-    padding: 0.8rem 0;
+    padding: 0.9rem 0;
   }
 
   .container-fluid {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 100%;
   }
 
   .navbar-nav {
-    gap: 0;
+    gap: 0.4rem;
     flex-wrap: nowrap;
+    justify-content: flex-end;
   }
 
   .nav-item {
@@ -1323,34 +1326,38 @@ footer p {
   }
 
   .nav-link {
-    font-size: 0.75rem;
-    margin: 0 0.15rem;
-    padding: 0.4rem 0.3rem !important;
+    font-size: 0.8rem;
+    margin: 0 0.3rem;
+    padding: 0.5rem 0.5rem !important;
   }
 
-  .nav-link::before,
+  .nav-link::before {
+    margin-right: 3px;
+  }
+
   .nav-link::after {
-    display: none;
+    margin-left: 3px;
   }
 
   .btn-cv {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.4rem !important;
-    margin-left: 0.15rem;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem !important;
+    margin-left: 0.4rem;
   }
 
   .btn-cv i {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
+    margin-right: 0.2rem;
   }
 
   .nav-theme-toggle {
-    padding: 0.4rem 0.5rem;
-    font-size: 0.85rem;
-    margin-left: 0.15rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+    margin-left: 0.4rem;
   }
 
   .navbar-brand {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
   .navbar-brand::after {
@@ -1359,8 +1366,8 @@ footer p {
   }
 
   .container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }
 
@@ -1428,6 +1435,15 @@ footer p {
     padding: 1.5rem;
     margin: 0 1rem;
     width: calc(100% - 2rem);
+  }
+
+  /* Cambiar corchetes a llaves en móvil */
+  .nav-link::before {
+    content: "{";
+  }
+
+  .nav-link::after {
+    content: "}";
   }
 
   .projects-container,
