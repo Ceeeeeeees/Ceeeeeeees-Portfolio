@@ -935,6 +935,10 @@ section::after {
   text-align: center;
 }
 
+.contact-intro {
+  text-align: center;
+}
+
 .contact-form {
   max-width: 600px;
   width: 100%;
